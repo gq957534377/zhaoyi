@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('no')->unique();
             $table->string('name')->nullable();
             $table->string('head_img')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('email')->nullable();
             $table->tinyInteger('status')->nullable();
 
             $table->string('weChat', 32)->nullable()->comment('openId');
@@ -25,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('weChat_head', 255)->nullable()->comment('用户头像');
 
             $table->string('password');
+            $table->ipAddress('ip')->nullable()->comment('上次登陆ip');
             $table->rememberToken();
             $table->timestamps();
         });
