@@ -53,10 +53,16 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a href="">上次登录时间：{{session()->get('login_last_time')}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="">上次登录IP：{{session()->get('login_last_ip')}}</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            退出
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

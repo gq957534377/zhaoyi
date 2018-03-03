@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -62,5 +63,12 @@ class LoginController extends Controller
             $this->guard()->logout();
             return redirect('/login')->withInput()->withErrors(['no'=>'账号禁用']);
         }
+
+        // 更新上次登陆ip和登陆时间
+        $request->session()->put('login_last_time', $user->updated_at);
+        $request->session()->put('login_last_ip', $user->ip);
+        $user->ip = $request->getClientIp();
+        $user->updated_at = time();
+        $user->save();
     }
 }
