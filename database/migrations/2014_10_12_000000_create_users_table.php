@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('head_img')->nullable();
             $table->string('tel')->nullable();
             $table->string('email')->nullable();
-            $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('status')->default(1);
 
             $table->string('weChat', 32)->nullable()->comment('openId');
             $table->string('weChat_name', 32)->nullable()->comment('姓名');

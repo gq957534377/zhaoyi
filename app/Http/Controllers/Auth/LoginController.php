@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * 设置使用用户名登陆.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'no';
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  mixed $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->status != 1) {
+            $this->guard()->logout();
+            return redirect('/login')->withInput()->withErrors(['no'=>'账号禁用']);
+        }
     }
 }
