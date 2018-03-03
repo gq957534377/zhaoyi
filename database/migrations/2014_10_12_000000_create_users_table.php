@@ -17,9 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('no')->unique();
             $table->string('name')->nullable();
-            $table->string('class')->nullable()->comment('所在班级');
-            $table->tinyInteger('role')->nullable()->comment('所在班级');
-
+            $table->string('head_img')->nullable();
+            $table->string('status')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

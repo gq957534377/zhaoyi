@@ -8,7 +8,15 @@
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "spatie/laravel-permission": "^2.7",
+        "stevenyangecho/laravel-u-editor": "^1.4",
+        "overtrue/laravel-wechat": "^3.1",
+        "phpoffice/phpexcel": "^1.8",
+        "arcanedev/log-viewer": "^4.4",
+        "barryvdh/laravel-debugbar": "^2.4",
+        "predis/predis": "^1.1",
+        "barryvdh/laravel-ide-helper": "^2.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
