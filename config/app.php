@@ -176,7 +176,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        //微信
+        Overtrue\LaravelWechat\ServiceProvider::class,
+        // log日志
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        // 权限
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*
@@ -225,7 +230,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
     ],
 
 ];

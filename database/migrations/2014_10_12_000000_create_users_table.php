@@ -18,7 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('no')->unique();
             $table->string('name')->nullable();
             $table->string('head_img')->nullable();
-            $table->string('status')->nullable();
+            $table->tinyInteger('status')->nullable();
+
+            $table->string('weChat', 32)->nullable()->comment('openId');
+            $table->string('weChat_name', 32)->nullable()->comment('姓名');
+            $table->string('weChat_head', 255)->nullable()->comment('用户头像');
+
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
