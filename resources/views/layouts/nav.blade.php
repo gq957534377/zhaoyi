@@ -1,56 +1,27 @@
-
-
 <ul class="tpl-left-nav-menu">
     <li class="tpl-left-nav-item">
-        <a href="{{url('/home')}}" class="nav-link active">
+        <a href="{{url('/home')}}" class="nav-link @if(request()->path()=='home') active @endif">
             <i class="am-icon-home"></i>
             <span>首页</span>
         </a>
     </li>
     <li class="tpl-left-nav-item">
-        <a href="chart.html" class="nav-link tpl-left-nav-link-list">
-            <i class="am-icon-bar-chart"></i>
-            <span>数据表</span>
-            <i class="tpl-left-nav-content tpl-badge-danger">
-                12
-            </i>
-        </a>
-    </li>
-
-    <li class="tpl-left-nav-item">
         <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
             <i class="am-icon-table"></i>
-            <span>表格</span>
+            <span>角色管理</span>
             <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
         </a>
         <ul class="tpl-left-nav-sub-menu">
             <li>
-                <a href="table-font-list.html">
+                <a href="{{url('/roles')}}">
                     <i class="am-icon-angle-right"></i>
-                    <span>文字表格</span>
-                    <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                    <span>角色列表</span>
                 </a>
 
-                <a href="table-images-list.html">
+                <a href="{{url('/roles/create')}}">
                     <i class="am-icon-angle-right"></i>
-                    <span>图片表格</span>
-                    <i class="tpl-left-nav-content tpl-badge-success">
-                        18
-                    </i>
-
-                    <a href="form-news.html">
-                        <i class="am-icon-angle-right"></i>
-                        <span>消息列表</span>
-                        <i class="tpl-left-nav-content tpl-badge-primary">
-                            5
-                        </i>
-
-
-                        <a href="form-news-list.html">
-                            <i class="am-icon-angle-right"></i>
-                            <span>文字列表</span>
-
-                        </a>
+                    <span>添加角色</span>
+                </a>
             </li>
         </ul>
     </li>

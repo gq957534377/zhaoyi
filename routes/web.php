@@ -17,4 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// 登陆后的操作
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    /*
+    |--------------------------------------------------------------------------
+    | 角色管理
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('roles', 'RolesController');
+});
+
+
+

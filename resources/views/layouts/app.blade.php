@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title',config('app.name', 'Laravel') )</title>
     <meta name="description" content="成绩管理系统">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="assets/js/echarts.min.js"></script>
+    <!-----私有样式-------->
+    @yield('style')
 </head>
 
 <body data-type="index">
@@ -184,9 +186,9 @@
 
 <div class="tpl-page-container tpl-page-header-fixed">
     <div class="tpl-left-nav tpl-left-nav-hover">
-        {{--<div class="tpl-left-nav-title">--}}
-        {{--导航--}}
-        {{--</div>--}}
+        <div class="tpl-left-nav-title">
+        导航
+        </div>
         <div class="tpl-left-nav-list">
             @include('layouts.nav')
         </div>
