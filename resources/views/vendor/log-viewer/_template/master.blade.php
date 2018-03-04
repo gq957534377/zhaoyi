@@ -1,42 +1,231 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title',config('app.name', 'Laravel') )</title>
+    <meta name="description" content="成绩管理系统">
+    <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LogViewer</title>
-    <meta name="description" content="LogViewer">
-    <meta name="author" content="ARCANEDEV">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.15.35/css/bootstrap-datetimepicker.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="/vendors/bootstrap/css/bootstrap.css">
     @include('log-viewer::_template.style')
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<!-----私有样式-------->
+    @yield('style')
 </head>
-<body>
-    @include('log-viewer::_template.navigation')
 
-    <div class="container-fluid">
-        @yield('content')
+<body data-type="@yield('type','index')">
+
+
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <a href="javascript:;" class="tpl-logo">
+            <img src="/assets/img/logo.png" alt="">
+        </a>
+    </div>
+    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
+
     </div>
 
-    @include('log-viewer::_template.footer')
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+                class="am-icon-bars"></span></button>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment-with-locales.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>
-    <script>
-        Chart.defaults.global.responsive      = true;
-        Chart.defaults.global.scaleFontFamily = "'Source Sans Pro'";
-        Chart.defaults.global.animationEasing = "easeOutQuart";
-    </script>
-    @yield('modals')
-    @yield('scripts')
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-bell-o"></span> 提醒 <span
+                            class="am-badge tpl-badge-success am-round">5</span></span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>你有 <span class="tpl-color-success">5</span> 条提醒</h3><a href="###">全部</a></li>
+                    <li class="tpl-dropdown-list-bdbc"><a href="#" class="tpl-dropdown-list-fl"><span
+                                    class="am-icon-btn am-icon-plus tpl-dropdown-ico-btn-size tpl-badge-success"></span>
+                            【预览模块】移动端 查看时 手机、电脑框隐藏。</a>
+                        <span class="tpl-dropdown-list-fr">3小时前</span>
+                    </li>
+                    <li class="tpl-dropdown-list-bdbc"><a href="#" class="tpl-dropdown-list-fl"><span
+                                    class="am-icon-btn am-icon-check tpl-dropdown-ico-btn-size tpl-badge-danger"></span>
+                            移动端，导航条下边距处理</a>
+                        <span class="tpl-dropdown-list-fr">15分钟前</span>
+                    </li>
+                    <li class="tpl-dropdown-list-bdbc"><a href="#" class="tpl-dropdown-list-fl"><span
+                                    class="am-icon-btn am-icon-bell-o tpl-dropdown-ico-btn-size tpl-badge-warning"></span>
+                            追加统计代码</a>
+                        <span class="tpl-dropdown-list-fr">2天前</span>
+                    </li>
+                </ul>
+            </li>
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-comment-o"></span> 消息 <span
+                            class="am-badge tpl-badge-danger am-round">9</span></span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>你有 <span class="tpl-color-danger">9</span> 条新消息</h3><a href="###">全部</a></li>
+                    <li>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="/assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from"> 禁言小张 </span>
+                                <span class="tpl-dropdown-content-time">10分钟前 </span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="/assets/img/user03.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from"> Steam </span>
+                                <span class="tpl-dropdown-content-time">18分钟前</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-calendar"></span> 进度 <span
+                            class="am-badge tpl-badge-primary am-round">4</span></span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>你有 <span class="tpl-color-primary">4</span> 个任务进度</h3><a href="###">全部</a></li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">Amaze UI 用户中心 v1.2 </span>
+                                <span class="percent">45%</span>
+                                </span>
+                            <span class="progress">
+                        <div class="am-progress tpl-progress am-progress-striped"><div
+                                    class="am-progress-bar am-progress-bar-success" style="width:45%"></div></div>
+                    </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">新闻内容页 </span>
+                                <span class="percent">30%</span>
+                                </span>
+                            <span class="progress">
+                       <div class="am-progress tpl-progress am-progress-striped"><div
+                                   class="am-progress-bar am-progress-bar-secondary" style="width:30%"></div></div>
+                    </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">管理中心 </span>
+                                <span class="percent">60%</span>
+                                </span>
+                            <span class="progress">
+                        <div class="am-progress tpl-progress am-progress-striped"><div
+                                    class="am-progress-bar am-progress-bar-warning" style="width:60%"></div></div>
+                    </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span
+                            class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+
+            @guest
+            <li><a href="{{ route('login') }}">Login</a></li>
+            <li><a href="{{ route('register') }}">Register</a></li>
+            @else
+                <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                    <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                        <span class="tpl-header-list-user-nick">{{ Auth::user()->name }} </span><span
+                                class="tpl-header-list-user-ico"> <img src="{{ Auth::user()->head_img }} "></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="#"><span class="am-icon-bell-o"></span>
+                                上次登录时间：{{session()->get('login_last_time')}}</a></li>
+                        <li><a href="#"><span class="am-icon-bell-o"></span> 上次登录IP：{{session()->get('login_last_ip')}}
+                            </a></li>
+                        <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
+                        <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span class="am-icon-power-off"></span>退出
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                @endguest
+                <li><a href="###" class="tpl-header-list-link"><span
+                                class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="tpl-page-container tpl-page-header-fixed">
+    <div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">
+            导航
+        </div>
+        <div class="tpl-left-nav-list">
+            @include('layouts.nav')
+        </div>
+    </div>
+    @yield('content')
+</div>
 </body>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>
+<script>
+    Chart.defaults.global.responsive      = true;
+    Chart.defaults.global.scaleFontFamily = "'Source Sans Pro'";
+    Chart.defaults.global.animationEasing = "easeOutQuart";
+</script>
+@yield('modals')
+@yield('scripts')
+@yield('modals')
+@yield('scripts')
+@yield('script')
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

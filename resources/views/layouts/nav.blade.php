@@ -6,6 +6,12 @@
         </a>
     </li>
     <li class="tpl-left-nav-item">
+        <a href="{{url('/log-viewer/logs')}}" class="nav-link @if(request()->path()=='log-viewer/logs') active @endif">
+            <i class="am-icon-home"></i>
+            <span>日志管理</span>
+        </a>
+    </li>
+    <li class="tpl-left-nav-item">
         <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
             <i class="am-icon-table"></i>
             <span>角色管理</span>
