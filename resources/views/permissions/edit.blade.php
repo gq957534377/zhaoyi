@@ -37,7 +37,7 @@
                                 <label for="user-email" class="am-u-sm-3 am-form-label">权限英文名</label>
                                 <div class="am-u-sm-9">
                                     <input type="text" name="name" required maxlength="64"
-                                           value="{{$permission->name_cn}}"
+                                           value="{{$permission->name}}"
                                            placeholder="权限英文名">
                                 </div>
                             </div>

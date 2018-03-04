@@ -61,7 +61,7 @@
                                                                     class="am-icon-pencil-square-o"></span> 编辑
                                                         </button>
                                                     </a>
-                                                    <a href="">
+                                                    <a href="javascript:;">
                                                         <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del"
                                                                 data-id="{{$role->id}}">
                                                             <span class="am-icon-trash-o"></span> 删除

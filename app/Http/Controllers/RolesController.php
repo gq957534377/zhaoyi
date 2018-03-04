@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
@@ -31,41 +32,35 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $permissions = $user->getAllPermissions();
-
+        $permissions = Permission::all();
         return view('roles.create', ['permissions' => $permissions]);
     }
 
     /**
      * 说明: 添加角色以及权限
      *
-     * @param RoleStore $request
-     * @param AgentService $agentService
+     * @param Request $request
      * @return mixed
      * @author 郭庆
      */
-    public function store(RoleStore $request, AgentService $agentService)
+    public function store(Request $request)
     {
         $data = $request->except('_token');
-        $company_guid = $agentService->getCompanyGuid();
         \DB::beginTransaction();
         try {
             $role = Role::create([
-                'guard_name' => 'company',
-                'company_guid' => $company_guid,
-                'name' => RolePermission::setRoleName($data['role_en']),
-                'name_en' => $data['role_en'],
-                'name_cn' => $data['role_cn']
+                'guard_name' => 'web',
+                'name' => $data['name'],
+                'name_cn' => $data['name_cn']
             ]);
-            $role->givePermissionTo($data['permission']);
+            $role->givePermissionTo($data['permissions']??[]);
             \DB::commit();
         } catch (\Exception $e) {
             \DB::rollBack();
-            \Log::error('添加' . $data['role_cn'] . '角色失败' . $e->getMessage());
+            \Log::error('添加' . $data['name_cn'] . '角色失败' . $e->getMessage());
             return back()->withInput()->withErrors('添加失败,错误信息：' . $e->getMessage());
         }
-        return back()->withErrors('添加成功！', 'success');
+        return redirect('/roles')->withErrors('添加成功！', 'success');
     }
 
     /**
@@ -77,12 +72,8 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        // 获取当前登录用户的权限
-        $user = \Auth::guard('company')->user();
-        $result = $user->getAllPermissions();
-        $permissions = \App\Model\Permission::getCompanyPermissions($result);
-
-        return view('agent.roles.edit', [
+        $permissions = Permission::all();
+        return view('roles.edit', [
             'permissions' => $permissions,
             'role' => $role,
             'rolePermissions' => $role->permissions->pluck('name')->toArray()
@@ -93,27 +84,26 @@ class RolesController extends Controller
      * 说明: 修改角色权限
      *
      * @param Role $role
-     * @param UpdateRole $request
+     * @param Request $request
      * @return mixed
      * @author 郭庆
      */
-    public function update(Role $role, UpdateRole $request)
+    public function update(Role $role, Request $request)
     {
         \DB::beginTransaction();
         try {
-            $role->name = RolePermission::setRoleName($request->role_en);
-            $role->name_cn = $request->role_cn;
-            $role->name_en = $request->role_en;
+            $role->name = $request->name;
+            $role->name_cn = $request->name_cn;
             $role->save();
 
-            $role->syncPermissions($request->permission);
+            $role->syncPermissions($request->permissions??[]);
             \DB::commit();
         } catch (\Exception $e) {
             \DB::rollBack();
-            \Log::error('修改' . $role->name . '角色失败' . $e->getMessage());
+            \Log::error('修改' . $role->name_cn . '角色失败' . $e->getMessage() . $e->getFile() . $e->getCode());
             return back()->withInput()->withErrors('修改失败,错误信息：' . $e->getMessage());
         }
-        return back()->withErrors('修改成功！', 'success');
+        return redirect('/roles')->withErrors('修改成功！', 'success');
     }
 
     /**
