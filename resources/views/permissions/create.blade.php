@@ -7,7 +7,7 @@
             权限管理
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="{{url('/')}}" class="am-icon-home">首页</a></li>
+            <li><a href="#" class="am-icon-home">权限管理</a></li>
             <li><a href="{{url('/permissions')}}">权限列表</a></li>
             <li class="am-active">添加权限</li>
         </ol>
