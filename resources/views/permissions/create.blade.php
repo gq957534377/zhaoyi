@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('type','generalComponents')
+@section('title','添加权限')
 @section('content')
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">

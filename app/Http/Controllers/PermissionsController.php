@@ -15,8 +15,8 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        $result = Permission::paginate(config('page.admin.permission'));
-        return view('permissions.index', ['result' => $result]);
+        $permissions = Permission::paginate(config('page.admin.permission'));
+        return view('permissions.index', ['permissions' => $permissions]);
     }
 
     /**
@@ -75,7 +75,7 @@ class PermissionsController extends Controller
 
         if (empty($result)) return back()->withErrors('修改失败!');
 
-        return redirect('/permissions')->withErrors('修改成功!');;
+        return redirect('/permissions')->withErrors('修改成功!','success');
     }
 
     /**

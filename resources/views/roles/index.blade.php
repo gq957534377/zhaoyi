@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', '角色管理')
+@section('type','generalComponents')
 
 @section('style')
     <link rel="stylesheet"
