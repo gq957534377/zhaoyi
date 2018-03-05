@@ -18,7 +18,7 @@ class DeansController extends Controller
     {
         $role = Role::where('name', 'dean')->first();
 
-        $deans = $role->users;
+        $deans = $role->users??collect([]);
         return view('deans.index', ['deans' => $deans]);
     }
 
