@@ -52,4 +52,25 @@
             </li>
         </ul>
     </li>
+
+    <li class="tpl-left-nav-item">
+        <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+            <i class="am-icon-table"></i>
+            <span>教务管理</span>
+            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+        </a>
+        <ul class="tpl-left-nav-sub-menu">
+            <li>
+                <a href="{{url('/deans')}}">
+                    <i class="am-icon-angle-right"></i>
+                    <span>教务列表</span>
+                </a>
+
+                <a href="{{url('/deans/create')}}">
+                    <i class="am-icon-angle-right"></i>
+                    <span>添加教务</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 </ul>

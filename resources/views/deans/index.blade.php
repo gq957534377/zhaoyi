@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', '角色管理')
 @section('type','generalComponents')
+@section('title','教务管理')
 
 @section('style')
     <link rel="stylesheet"
@@ -9,25 +9,18 @@
 @section('content')
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            角色管理
+            教务管理
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">角色管理</a></li>
-            <li><a href="{{ url('/roles/create') }}">添加角色</a></li>
-            <li class="am-active">角色列表</li>
+            <li><a href="#" class="am-icon-home">教务管理</a></li>
+            <li><a href="{{ url('/deans/create') }}">添加教务</a></li>
+            <li class="am-active">教务列表</li>
         </ol>
         @include('layouts.errors')
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 角色列表
-                </div>
-                <div class="tpl-portlet-input tpl-fz-ml">
-                    <div class="portlet-input input-small input-inline">
-                        <div class="input-icon right">
-                            <i class="am-icon-search"></i>
-                            <input type="text" class="form-control form-control-solid" placeholder="搜索..."></div>
-                    </div>
+                    <span class="am-icon-code"></span> 教务列表
                 </div>
             </div>
             <div class="">
@@ -37,33 +30,33 @@
                             <thead>
                             <tr>
                                 <th class="table-id">ID</th>
-                                <th class="table-title">角色</th>
-                                <th class="table-type">英文名</th>
-                                <th class="table-type">用户数</th>
+                                <th class="table-title">教务名</th>
+                                <th class="table-type">账号</th>
                                 <th class="table-date am-hide-sm-only">修改日期</th>
                                 <th class="table-set">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if(!empty($roles->count()))
-                                @foreach($roles as $role)
+                            @if(!empty($deans->count()))
+                                @foreach($deans as $dean)
                                     <tr>
-                                        <td>{{$role->id}}</td>
-                                        <td><a href="{{ url('/roles/'.$role->id.'/edit') }}">{{$role->name_cn}}</a></td>
-                                        <td>{{$role->name}}</td>
-                                        <td>{{ $role->users->count() }}</td>
-                                        <td class="am-hide-sm-only">{{$role->updated_at}}</td>
+                                        <td>{{$dean->id}}</td>
+                                        <td>
+                                            <a href="{{ url('/deans/'.$dean->id.'/edit') }}">{{$dean->name}}</a>
+                                        </td>
+                                        <td>{{$dean->no}}</td>
+                                        <td class="am-hide-sm-only">{{$dean->updated_at}}</td>
                                         <td>
                                             <div class="am-btn-toolbar">
                                                 <div class="am-btn-group am-btn-group-xs">
-                                                    <a href="{{ url('/roles/'.$role->id.'/edit') }}">
+                                                    <a href="{{ url('/deans/'.$dean->id.'/edit') }}">
                                                         <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                                                     class="am-icon-pencil-square-o"></span> 编辑
                                                         </button>
                                                     </a>
                                                     <a href="javascript:;">
                                                         <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del"
-                                                                data-id="{{$role->id}}">
+                                                                data-id="{{$dean->id}}">
                                                             <span class="am-icon-trash-o"></span> 删除
                                                         </button>
                                                     </a>
@@ -76,7 +69,7 @@
                                 <tr>
                                     <td colspan="5">
                                         <center>
-                                            暂无角色,请添加角色
+                                            暂无教务,请添加教务
                                         </center>
                                     </td>
                                 </tr>
@@ -97,7 +90,7 @@
     <script>
         // 单选删除操作
         $('.del').click(function () {
-            var url = ' roles/' + $(this).data('id');
+            var url = ' deans/' + $(this).data('id');
             $.ajax({
                 url: url,
                 data: {'_token': '{{ csrf_token() }}'},
@@ -106,7 +99,7 @@
                     if (data.StatusCode === 200) {
                         swal({
                             title: '删除成功！',
-                            text: '该角色下的用户将没有任何权限，请为其重新分配角色',
+                            text: '同时该教务下的用户也失效',
                             type: "success",
                             showCancelButton: false,
                             confirmButtonColor: "#DD6B55",
@@ -123,30 +116,5 @@
         });
     </script>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
