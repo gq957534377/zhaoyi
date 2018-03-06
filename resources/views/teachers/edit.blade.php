@@ -33,10 +33,10 @@
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="user-email" class="am-u-sm-3 am-form-label">账号(学号)</label>
+                                <label for="user-email" class="am-u-sm-3 am-form-label">账号(工号)</label>
                                 <div class="am-u-sm-9">
                                     <input type="text" name="no" required maxlength="64" value="{{$teacher->no}}"
-                                           placeholder="请输入账号/学号">
+                                           placeholder="请输入账号/工号">
                                 </div>
                             </div>
 
