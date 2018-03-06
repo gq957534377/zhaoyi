@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('name')->nullable();
             $table->string('max_num')->nullable();
             $table->string('time')->nullable();
+            $table->string('classroom')->nullable();
             $table->timestamps();
         });
     }
