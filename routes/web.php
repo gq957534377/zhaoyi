@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('get_qiniu_token', 'Controller@getToken');
 
 // 登陆后的操作
 Route::group(['middleware' => ['auth']], function () {
