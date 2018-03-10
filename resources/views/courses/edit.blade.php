@@ -35,8 +35,21 @@
                             <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">人数</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" name="max_num" required maxlength="64" value="{{$course->max_num}}"
+                                    <input type="text" name="max_num" required maxlength="64"
+                                           value="{{$course->max_num}}"
                                            placeholder="请输入最多容纳人数">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="user-phone" class="am-u-sm-3 am-form-label">代课教师</label>
+                                <div class="am-u-sm-9">
+                                    <select name="teacher_id" data-am-selected="{searchBox: 1}">
+                                        @foreach($teachers as $teacher)
+                                            <option value="{{$teacher->id}}"
+                                                    @if($course->teacher_id==$teacher->id) selected @endif>{{$teacher->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -51,7 +64,8 @@
                             <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">上课地点</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" name="classroom" required maxlength="64" value="{{$course->classroom}}"
+                                    <input type="text" name="classroom" required maxlength="64"
+                                           value="{{$course->classroom}}"
                                            placeholder="请输入上课地点">
                                 </div>
                             </div>

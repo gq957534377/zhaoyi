@@ -40,6 +40,17 @@
                             </div>
 
                             <div class="am-form-group">
+                                <label for="user-phone" class="am-u-sm-3 am-form-label">代课教师</label>
+                                <div class="am-u-sm-9">
+                                    <select name="teacher_id" data-am-selected="{searchBox: 1}">
+                                        @foreach($teachers as $teacher)
+                                            <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">上课时间</label>
                                 <div class="am-u-sm-9">
                                     <input type="text" name="time" required maxlength="64" value="{{old('time')}}"
@@ -50,7 +61,8 @@
                             <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">上课地点</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" name="classroom" required maxlength="64" value="{{old('classroom')}}"
+                                    <input type="text" name="classroom" required maxlength="64"
+                                           value="{{old('classroom')}}"
                                            placeholder="请输入上课地点">
                                 </div>
                             </div>

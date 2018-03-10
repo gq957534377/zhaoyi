@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -16,7 +17,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Course::paginate(10);
+        $courses = Course::with('teacher')->paginate(10);
         return view('courses.index', ['courses' => $courses]);
     }
 
@@ -28,7 +29,10 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        $role = Role::where('name', 'teacher')->first();
+
+        $teachers = $role->users??collect([]);
+        return view('courses.create', ['teachers' => $teachers]);
     }
 
     /**
@@ -45,6 +49,7 @@ class CoursesController extends Controller
             'max_num' => $request->max_num,
             'time' => $request->time,
             'classroom' => $request->classroom,
+            'teacher_id' => $request->teacher_id,
         ]))
         )
             return back()->withInput()->withErrors('添加失败！');
@@ -60,7 +65,10 @@ class CoursesController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('courses.edit', ['course' => $course]);
+        $role = Role::where('name', 'teacher')->first();
+
+        $teachers = $role->users??collect([]);
+        return view('courses.edit', ['course' => $course, 'teachers' => $teachers]);
     }
 
     /**
