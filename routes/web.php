@@ -62,6 +62,20 @@ Route::group(['middleware' => ['auth']], function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('courses', 'CoursesController');
+
+    /*
+    |--------------------------------------------------------------------------
+    | 用户管理
+    |--------------------------------------------------------------------------
+    */
+    // 修改资料页面
+    Route::get('user_info', 'UsersController@userInfo');
+    // 提交修改资料
+    Route::post('update_info/{user}', 'UsersController@updateInfo');
+    // 修改密码视图
+    Route::get('change_pwd_view', 'UsersController@changePwdView');
+    // 修改密码操作
+    Route::post('change_pwd', 'UsersController@changePwd');
 });
 
 

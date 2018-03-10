@@ -4,30 +4,19 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
     /**
-     * 说明: 用户资料页面
-     *
-     * @param User $user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
-     */
-    public function show(User $user)
-    {
-        return view('users.show', ['user' => $user]);
-    }
-
-    /**
      * 说明: 资料修改页面
      *
-     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @author 郭庆
      */
-    public function edit(User $user)
+    public function userInfo()
     {
+        $user = Auth::user();
         return view('users.edit', ['user' => $user]);
     }
 
@@ -41,70 +30,47 @@ class UsersController extends Controller
      */
     public function updateInfo(User $user, Request $request)
     {
-        if (empty($request->head_img) || empty($request->name))
-            return back()->withErrors('头像或者姓名不能为空');
+        if (empty($request->tel) || empty($request->email))
+            return back()->withErrors('手机、邮箱均不能为空');
 
-        $user->head_img = $request->head_img;
-        $user->name = $request->name;
+        $user->head_img = $request->head_img??'';
+        $user->tel = $request->tel;
+        $user->email = $request->email;
         if (empty($user->save()))
             return back()->withErrors('修改失败');
         return back()->withErrors('修改成功！', 'success');
     }
 
     /**
-     * 说明: 绑定邮箱
+     * 说明: 修改密码视图
      *
-     * @param User $user
-     * @param Request $request
      * @return mixed
      * @author 郭庆
      */
-    public function bindEmail(User $user, Request $request)
+    public function changePwdView()
     {
-        if (empty($request->email))
-            return back()->withErrors('邮箱不能为空');
-
-        $user->email = $request->email;
-        if (empty($user->save()))
-            return back()->withErrors('绑定邮箱失败');
-        return back()->withErrors('绑定邮箱成功！', 'success');
-    }
-
-    /**
-     * 说明: 绑定手机
-     *
-     * @param User $user
-     * @param Request $request
-     * @return mixed
-     * @author 郭庆
-     */
-    public function bindTel(User $user, Request $request)
-    {
-        if (empty($request->tel))
-            return back()->withErrors('手机不能为空');
-
-        $user->tel = $request->tel;
-        if (empty($user->save()))
-            return back()->withErrors('绑定手机失败');
-        return back()->withErrors('绑定手机成功！', 'success');
+        return view('users.changePwd');
     }
 
     /**
      * 说明: 修改密码
      *
-     * @param User $user
      * @param Request $request
      * @return mixed
      * @author 郭庆
      */
-    public function changePwd(User $user, Request $request)
+    public function changePwd(Request $request)
     {
-        if (empty($request->password))
-            return back()->withErrors('密码不能为空');
+        if (empty($request->password) || empty($request->oldPwd))
+            return back()->withInput()->withErrors('旧密码不能为空');
+
+        $user = Auth::user();
+        if (!Auth::attempt(['no' => $user->no, 'password' => $request->oldPwd], false))
+            return back()->withInput()->withErrors('旧密码错误');
 
         $user->password = bcrypt($request->password);
         if (empty($user->save()))
-            return back()->withErrors('修改密码失败');
+            return back()->withInput()->withErrors('修改密码失败');
         return back()->withErrors('修改密码成功！', 'success');
     }
 
