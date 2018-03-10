@@ -164,8 +164,8 @@
                                 上次登录时间：{{session()->get('login_last_time')}}</a></li>
                         <li><a href="#"><span class="am-icon-bell-o"></span> 上次登录IP：{{session()->get('login_last_ip')}}
                             </a></li>
-                        <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
-                        <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                        <li><a href="{{url('user_info')}}"><span class="am-icon-bell-o"></span> 资料</a></li>
+                        <li><a href="{{url('change_pwd_view')}}"><span class="am-icon-cog"></span> 修改密码</a></li>
                         <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
