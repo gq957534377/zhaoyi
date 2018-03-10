@@ -89,7 +89,7 @@
 
                 <a href="{{url('/students/create')}}">
                     <i class="am-icon-angle-right"></i>
-                    <span>学生教务</span>
+                    <span>添加学生</span>
                 </a>
             </li>
         </ul>
