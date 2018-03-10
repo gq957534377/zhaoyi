@@ -31,6 +31,18 @@
                                            placeholder="学生名">
                                 </div>
                             </div>
+
+                            <div class="am-form-group">
+                                <label for="user-phone" class="am-u-sm-3 am-form-label">所在班级</label>
+                                <div class="am-u-sm-9">
+                                    <select name="team_id" data-am-selected="{searchBox: 1}">
+                                        @foreach($teams as $team)
+                                            <option value="{{$team->id}}">{{$team->class}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">账号(学号)</label>
                                 <div class="am-u-sm-9">

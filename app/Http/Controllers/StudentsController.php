@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
+use App\Models\TeamHasUser;
 use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -30,7 +32,8 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $teams = Team::all();
+        return view('students.create', ['teams' => $teams]);
     }
 
     /**
@@ -53,8 +56,14 @@ class StudentsController extends Controller
                 'status' => 1,
             ]);
 
-            // 将该用户绑定为公司角色
+            // 将该用户绑定为学生角色
             $user->assignRole('student');
+
+            // 添加班级关联表
+            TeamHasUser::insert([
+                'team_id' => $request->team_id,
+                'user_id' => $user->id,
+            ]);
             \DB::commit();
         } catch (\Exception $e) {
             \DB::rollBack();
@@ -73,7 +82,8 @@ class StudentsController extends Controller
      */
     public function edit(User $student)
     {
-        return view('students.edit', ['student' => $student]);
+        $teams = Team::all();
+        return view('students.edit', ['student' => $student, 'teams' => $teams]);
     }
 
     /**
@@ -87,7 +97,10 @@ class StudentsController extends Controller
     public function update(User $student, Request $request)
     {
         $data = $request->except('_token', '_method');
-
+        if ($student->team_id != $data['team_id']) {
+            \DB::table('team_has_users')->where(['user_id' => $student->id])->update(['team_id'=>$data['team_id']]);
+            unset($data['team_id']);
+        }
         $result = User::where(['id' => $student->id])->update($data);
 
         if (empty($result)) return back()->withErrors('修改失败!');

@@ -22,7 +22,8 @@
             <div class="tpl-block ">
                 <div class="am-g tpl-amazeui-form">
                     <div class="am-u-sm-12 am-u-md-9">
-                        <form class="am-form am-form-horizontal" action="{{url('students/'.$student->id)}}" method="post">
+                        <form class="am-form am-form-horizontal" action="{{url('students/'.$student->id)}}"
+                              method="post">
                             {{csrf_field()}}
                             {{method_field('put')}}
                             <div class="am-form-group">
@@ -32,6 +33,19 @@
                                            placeholder="学生名">
                                 </div>
                             </div>
+
+                            <div class="am-form-group">
+                                <label for="user-phone" class="am-u-sm-3 am-form-label">所在班级</label>
+                                <div class="am-u-sm-9">
+                                    <select name="team_id" data-am-selected="{searchBox: 1}">
+                                        @foreach($teams as $team)
+                                            <option @if(in_array($team->id,$student->class->pluck('id')->toArray())) selected
+                                                    @endif value="{{$team->id}}">{{$team->class}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">账号(学号)</label>
                                 <div class="am-u-sm-9">
