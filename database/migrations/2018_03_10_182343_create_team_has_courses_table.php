@@ -16,6 +16,8 @@ class CreateTeamHasCoursesTable extends Migration
         Schema::create('team_has_courses', function (Blueprint $table) {
             $table->integer('team_id');
             $table->integer('course_id');
+            $table->integer('day');
+            $table->integer('num');
             $table->primary(['team_id', 'user_id']);
         });
     }
