@@ -1124,19 +1124,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">名称</label>
-                        <input type="text" class="form-control" placeholder="请输入名称">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">名称</label>
-                        <select class="form-control">
-                            <option></option>
+                        <label for="name">选择课程</label>
+                        <select class="form-control" id="course_id">
+                            @foreach($courses as $course)
+                            <option value="{{$course->id}}">{{$course->name}}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
+                    <button type="button" data-num="" data-day="" class="btn btn-primary js_gqsb">提交更改</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
@@ -1147,34 +1145,39 @@
     <script src="{{url('/vendors/sweet-alert/js/sweet-alert.min.js')}}"></script>
     <script>
         $('.edit').click(function () {
-            var url = ' team_has_courses';
+            $('.js_gqsb').data('num', $(this).data('num')).data('day', $(this).data('day'));
             $('.js_modal').click();
-            {{--$.ajax({--}}
-                {{--url: url,--}}
-                {{--data: {--}}
-                    {{--'_token': '{{ csrf_token() }}',--}}
-                    {{--'day': $(this).data('day'),--}}
-                    {{--'num': $(this).data('num')--}}
-                {{--},--}}
-                {{--type: 'post',--}}
-                {{--success: function (data) {--}}
-                    {{--if (data.StatusCode === 200) {--}}
-                        {{--swal({--}}
-                            {{--title: '删除成功！',--}}
-                            {{--text: '同时该课程表下的用户也失效',--}}
-                            {{--type: "success",--}}
-                            {{--showCancelButton: false,--}}
-                            {{--confirmButtonColor: "#DD6B55",--}}
-                            {{--confirmButtonText: '确认',--}}
-                            {{--closeOnConfirm: false,--}}
-                        {{--}, function (isConfirm) {--}}
-                            {{--location.reload();--}}
-                        {{--});--}}
-                    {{--} else {--}}
-                        {{--swal("操作失败!", data.ResultData, 'error');--}}
-                    {{--}--}}
-                {{--}--}}
-            {{--});--}}
+        });
+        $('.js_gqsb').click(function () {
+          var url = ' team_has_courses';
+          $.ajax({
+            url: url,
+            data: {
+              '_token': '{{ csrf_token() }}',
+              'day': $(this).data('day'),
+              'num': $(this).data('num'),
+              'course_id': $('#course_id').val(),
+              'team_id': $('#team_id').val()
+            },
+            type: 'post',
+            success: function (data) {
+              if (data.StatusCode === 200) {
+                swal({
+                  title: '删除成功！',
+                  text: '同时该课程表下的用户也失效',
+                  type: "success",
+                  showCancelButton: false,
+                  confirmButtonColor: "#DD6B55",
+                  confirmButtonText: '确认',
+                  closeOnConfirm: false,
+                }, function (isConfirm) {
+                  location.reload();
+                });
+              } else {
+                swal("操作失败!", data.ResultData, 'error');
+              }
+            }
+          });
         });
         // 单选删除操作
         $('.del').click(function () {
