@@ -41,6 +41,10 @@
                         <option value="{{$team->id}}">{{$team->class}}</option>
                     @endforeach
                 </select>
+                <button type="button"
+                        class="download am-btn am-btn-default am-btn-secondary">
+                    <span class="am-icon-save"></span> 下载
+                </button>
                 <div class="am-g">
                     {{-- 上午 第一节课 --}}
                     <div class="tpl-table-images">
