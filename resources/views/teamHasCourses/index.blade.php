@@ -1107,38 +1107,68 @@
             <div class="tpl-alert"></div>
         </div>
     </div>
+    <button class="hidden js_modal" data-toggle="modal" data-target="#myModal"></button>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 300px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">名称</label>
+                        <input type="text" class="form-control" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">名称</label>
+                        <select class="form-control">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
 @endsection
 @section('script')
+    <script src="/vendors/bootstrap/js/bootstrap.js"></script>
     <script src="{{url('/vendors/sweet-alert/js/sweet-alert.min.js')}}"></script>
     <script>
         $('.edit').click(function () {
             var url = ' team_has_courses';
-            $.ajax({
-                url: url,
-                data: {
-                    '_token': '{{ csrf_token() }}',
-                    'day': $(this).data('day'),
-                    'num': $(this).data('num')
-                },
-                type: 'post',
-                success: function (data) {
-                    if (data.StatusCode === 200) {
-                        swal({
-                            title: '删除成功！',
-                            text: '同时该课程表下的用户也失效',
-                            type: "success",
-                            showCancelButton: false,
-                            confirmButtonColor: "#DD6B55",
-                            confirmButtonText: '确认',
-                            closeOnConfirm: false,
-                        }, function (isConfirm) {
-                            location.reload();
-                        });
-                    } else {
-                        swal("操作失败!", data.ResultData, 'error');
-                    }
-                }
-            });
+            $('.js_modal').click();
+            {{--$.ajax({--}}
+                {{--url: url,--}}
+                {{--data: {--}}
+                    {{--'_token': '{{ csrf_token() }}',--}}
+                    {{--'day': $(this).data('day'),--}}
+                    {{--'num': $(this).data('num')--}}
+                {{--},--}}
+                {{--type: 'post',--}}
+                {{--success: function (data) {--}}
+                    {{--if (data.StatusCode === 200) {--}}
+                        {{--swal({--}}
+                            {{--title: '删除成功！',--}}
+                            {{--text: '同时该课程表下的用户也失效',--}}
+                            {{--type: "success",--}}
+                            {{--showCancelButton: false,--}}
+                            {{--confirmButtonColor: "#DD6B55",--}}
+                            {{--confirmButtonText: '确认',--}}
+                            {{--closeOnConfirm: false,--}}
+                        {{--}, function (isConfirm) {--}}
+                            {{--location.reload();--}}
+                        {{--});--}}
+                    {{--} else {--}}
+                        {{--swal("操作失败!", data.ResultData, 'error');--}}
+                    {{--}--}}
+                {{--}--}}
+            {{--});--}}
         });
         // 单选删除操作
         $('.del').click(function () {
