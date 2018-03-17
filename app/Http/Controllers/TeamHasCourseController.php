@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Team;
 use App\Models\TeamHasCourse;
 use App\Models\TeamHasUser;
@@ -12,12 +13,17 @@ class TeamHasCourseController extends Controller
     public function index(Request $request)
     {
         $teams = Team::all();
+        $courses = Course::all();
         if (!empty($request->team_id)) {
             $teamHasCourse = TeamHasCourse::where('team_id', $request->team_id)->get();
         } else {
             $teamHasCourse = collect([]);
         }
-        return view('teamHasCourses.index', ['teamHasCourse' => $teamHasCourse, 'teams' => $teams]);
+        return view('teamHasCourses.index', [
+            'teamHasCourse' => $teamHasCourse,
+            'teams' => $teams,
+            'courses' => $courses
+        ]);
     }
 
     /**
@@ -31,15 +37,26 @@ class TeamHasCourseController extends Controller
     {
         $teamHasCourse = TeamHasCourse::where([
             'team_id' => $request->team_id,
-            'course_id' => $request->course_id,
             'day' => $request->day,
             'num' => $request->num
         ])->first();
-        if (empty($teamHasCourse))
-            return response()->json(['StatusCode' => 404, 'ResultData' => '没有这条记录']);
+        if (empty($teamHasCourse)) {
+            $create = TeamHasCourse::create([
+                'team_id' => $request->team_id,
+                'day' => $request->day,
+                'num' => $request->num,
+                'course_id' => $request->course_id,
+            ]);
+            if (empty($create))
+                return response()->json(['StatusCode' => 500, 'ResultData' => '设置失败，请联系管理员']);
+            return response()->json(['StatusCode' => 200, 'ResultData' => '设置成功']);
+        }
 
+        if ($teamHasCourse->course_id != $request->course_id) {
+            $teamHasCourse->course_id = $request->course_id;
+            $teamHasCourse->save();
+        }
         return response()->json(['StatusCode' => 200, 'ResultData' => '设置成功']);
-
     }
 
     /**
