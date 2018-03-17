@@ -15,12 +15,12 @@ class TeamHasCourseController extends Controller
         $teams = Team::all();
         $courses = Course::all();
         if (!empty($request->team_id)) {
-            $teamHasCourse = TeamHasCourse::where('team_id', $request->team_id)->get();
+            $teamHasCourses = TeamHasCourse::where('team_id', $request->team_id)->get();
         } else {
-            $teamHasCourse = collect([]);
+            $teamHasCourses = collect([]);
         }
         return view('teamHasCourses.index', [
-            'teamHasCourse' => $teamHasCourse,
+            'teamHasCourses' => $teamHasCourses,
             'teams' => $teams,
             'courses' => $courses
         ]);
