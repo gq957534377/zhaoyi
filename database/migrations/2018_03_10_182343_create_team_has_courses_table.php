@@ -18,7 +18,6 @@ class CreateTeamHasCoursesTable extends Migration
             $table->integer('course_id');
             $table->integer('day');
             $table->integer('num');
-            $table->primary(['team_id', 'user_id']);
         });
     }
 

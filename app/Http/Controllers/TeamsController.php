@@ -82,6 +82,7 @@ class TeamsController extends Controller
      *
      * @param Team $team
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      * @author 郭庆
      */
     public function destroy(Team $team)
