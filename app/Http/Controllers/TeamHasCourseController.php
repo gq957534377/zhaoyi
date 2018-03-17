@@ -63,12 +63,11 @@ class TeamHasCourseController extends Controller
      * 说明: 删除课程
      *
      * @param TeamHasCourse $teamHasCourse
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      * @author 郭庆
      */
-    public function destroy(TeamHasCourse $teamHasCourse, Request $request)
+    public function destroy(TeamHasCourse $teamHasCourse)
     {
         if (empty($teamHasCourse->delete())) return response()->json(['StatusCode' => 404, 'ResultData' => '没有这条记录']);
         return response()->json(['StatusCode' => 200, 'ResultData' => '删除成功']);
