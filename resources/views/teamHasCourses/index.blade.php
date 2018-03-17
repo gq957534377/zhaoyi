@@ -1142,13 +1142,11 @@
         });
         // 单选删除操作
         $('.del').click(function () {
-            var url = ' team_has_courses/del';
+            var url = ' team_has_courses/' + $(this).data('id');
             $.ajax({
                 url: url,
                 data: {
                     '_token': '{{ csrf_token() }}',
-                    'day': $(this).data('day'),
-                    'num': $(this).data('num')
                 },
                 type: 'DELETE',
                 success: function (data) {
