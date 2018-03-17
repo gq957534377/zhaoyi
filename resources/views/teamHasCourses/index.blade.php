@@ -35,6 +35,12 @@
                 </div>
             </div>
             <div class="">
+                <label for="">班级</label>
+                <select name="teacher_id" id="team_id" data-am-selected="{searchBox: 1}">
+                    @foreach($teams as $team)
+                        <option value="{{$team->id}}">{{$team->class}}</option>
+                    @endforeach
+                </select>
                 <div class="am-g">
                     {{-- 上午 第一节课 --}}
                     <div class="tpl-table-images">
