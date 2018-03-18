@@ -14,6 +14,7 @@ class CreateTeamHasCoursesTable extends Migration
     public function up()
     {
         Schema::create('team_has_courses', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('team_id');
             $table->integer('course_id');
             $table->integer('day');
