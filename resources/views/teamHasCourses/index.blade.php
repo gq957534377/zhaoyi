@@ -37,1082 +37,1300 @@
             <div class="">
                 <label for="">班级</label>
                 <select name="teacher_id" id="team_id" data-am-selected="{searchBox: 1}">
+                    <option value="">请选择班级</option>
                     @foreach($teams as $team)
-                        <option value="{{$team->id}}">{{$team->class}}</option>
+                        <option value="{{$team->id}}"
+                                @if(!empty(request('team_id')) && request('team_id')==$team->id) selected @endif>{{$team->class}}</option>
                     @endforeach
                 </select>
                 <button type="button"
                         class="download am-btn am-btn-default am-btn-secondary">
                     <span class="am-icon-save"></span> 下载
                 </button>
-                <div class="am-g">
-                    {{-- 上午 第一节课 --}}
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <center><h3>周一</h3></center>
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">上午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="1"
-                                                    data-num="1"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="1"
-                                                    data-num="1"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                @if(!empty(request('team_id')))
+                    <div class="am-g">
+                        {{-- 上午 第一节课 --}}
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <center><h3>周一</h3></center>
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">上午 第一节</div>
+                                    @if(empty($one_one=$teamHasCourses->where('day',1)->where('num',1)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 20px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$one_one->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($one_one))
+                                                {{$one_one->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="1"
+                                                        data-num="1"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="1"
+                                                        data-num="1"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <center><h3>周二</h3></center>
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">上午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="2"
-                                                    data-num="1"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="2"
-                                                    data-num="1"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <center><h3>周二</h3></center>
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">上午 第一节</div>
+                                    @if(empty($two_one=$teamHasCourses->where('day',2)->where('num',1)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$two_one->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($two_one))
+                                                {{$two_one->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="2"
+                                                        data-num="1"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="2"
+                                                        data-num="1"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <center><h3>周三</h3></center>
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">上午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="3"
-                                                    data-num="1"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="3"
-                                                    data-num="1"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <center><h3>周三</h3></center>
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">上午 第一节</div>
+                                    @if(empty($three_one=$teamHasCourses->where('day',3)->where('num',1)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$three_one->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($three_one))
+                                                {{$three_one->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="3"
+                                                        data-num="1"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="3"
+                                                        data-num="1"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <center><h3>周四</h3></center>
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">上午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="4"
-                                                    data-num="1"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="4"
-                                                    data-num="1"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <center><h3>周四</h3></center>
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">上午 第一节</div>
+                                    @if(empty($four_one=$teamHasCourses->where('day',4)->where('num',1)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$four_one->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($four_one))
+                                                {{$four_one->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="4"
+                                                        data-num="1"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="4"
+                                                        data-num="1"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <center><h3>周五</h3></center>
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">上午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="5"
-                                                    data-num="1"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="5"
-                                                    data-num="1"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <center><h3>周五</h3></center>
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">上午 第一节</div>
+                                    @if(empty($five_one=$teamHasCourses->where('day',5)->where('num',1)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$five_one->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($five_one))
+                                                {{$five_one->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="5"
+                                                        data-num="1"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="5"
+                                                        data-num="1"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <center><h3>周六</h3></center>
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">上午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="6"
-                                                    data-num="1"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="6"
-                                                    data-num="1"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <center><h3>周六</h3></center>
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">上午 第一节</div>
+                                    @if(empty($six_one=$teamHasCourses->where('day',6)->where('num',1)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$six_one->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($six_one))
+                                                {{$six_one->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="6"
+                                                        data-num="1"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="6"
+                                                        data-num="1"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <center><h3>周日</h3></center>
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">上午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="7"
-                                                    data-num="1"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="7"
-                                                    data-num="1"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <center><h3>周日</h3></center>
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">上午 第一节</div>
+                                    @if(empty($sun_one=$teamHasCourses->where('day',7)->where('num',1)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$sun_one->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($sun_one))
+                                                {{$sun_one->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="7"
+                                                        data-num="1"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="7"
+                                                        data-num="1"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{-- 上午 第二节课 --}}
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">上午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="1"
-                                                    data-num="2"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="1"
-                                                    data-num="2"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        {{-- 上午 第二节课 --}}
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">上午 第二节</div>
+                                    @if(empty($one_two=$teamHasCourses->where('day',1)->where('num',2)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$one_two->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($one_two))
+                                                {{$one_two->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="1"
+                                                        data-num="2"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="1"
+                                                        data-num="2"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">上午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="2"
-                                                    data-num="2"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="2"
-                                                    data-num="2"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">上午 第二节</div>
+                                    @if(empty($two_two=$teamHasCourses->where('day',2)->where('num',2)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$two_two->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($two_two))
+                                                {{$two_two->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="2"
+                                                        data-num="2"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="2"
+                                                        data-num="2"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">上午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="3"
-                                                    data-num="2"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="3"
-                                                    data-num="2"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">上午 第二节</div>
+                                    @if(empty($three_two=$teamHasCourses->where('day',3)->where('num',2)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$three_two->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($three_two))
+                                                {{$three_two->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="3"
+                                                        data-num="2"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="3"
+                                                        data-num="2"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">上午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="4"
-                                                    data-num="2"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="4"
-                                                    data-num="2"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">上午 第二节</div>
+                                    @if(empty($four_two=$teamHasCourses->where('day',4)->where('num',2)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$four_two->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($four_two))
+                                                {{$four_two->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="4"
+                                                        data-num="2"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="4"
+                                                        data-num="2"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">上午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="5"
-                                                    data-num="2"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="5"
-                                                    data-num="2"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">上午 第二节</div>
+                                    @if(empty($five_two=$teamHasCourses->where('day',5)->where('num',2)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$five_two->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($five_two))
+                                                {{$five_two->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="5"
+                                                        data-num="2"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="5"
+                                                        data-num="2"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">上午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="6"
-                                                    data-num="2"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="6"
-                                                    data-num="2"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">上午 第二节</div>
+                                    @if(empty($six_two=$teamHasCourses->where('day',6)->where('num',2)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$six_two->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($six_two))
+                                                {{$six_two->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="6"
+                                                        data-num="2"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="6"
+                                                        data-num="2"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">上午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="7"
-                                                    data-num="2"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="7"
-                                                    data-num="2"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">上午 第二节</div>
+                                    @if(empty($sun_two=$teamHasCourses->where('day',7)->where('num',2)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$sun_two->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($sun_two))
+                                                {{$sun_two->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="7"
+                                                        data-num="2"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="7"
+                                                        data-num="2"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{-- 下午 第一节课 --}}
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">下午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="1"
-                                                    data-num="3"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="1"
-                                                    data-num="3"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        {{-- 下午 第一节课 --}}
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">下午 第一节</div>
+                                    @if(empty($one_three=$teamHasCourses->where('day',1)->where('num',3)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$one_three->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($one_three))
+                                                {{$one_three->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="1"
+                                                        data-num="3"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="1"
+                                                        data-num="3"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">下午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="2"
-                                                    data-num="3"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="2"
-                                                    data-num="3"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">下午 第一节</div>
+                                    @if(empty($two_three=$teamHasCourses->where('day',2)->where('num',3)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$two_three->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($two_three))
+                                                {{$two_three->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="2"
+                                                        data-num="3"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="2"
+                                                        data-num="3"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">下午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="3"
-                                                    data-num="3"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="3"
-                                                    data-num="3"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">下午 第一节</div>
+                                    @if(empty($three_three=$teamHasCourses->where('day',3)->where('num',3)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$three_three->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($three_three))
+                                                {{$three_three->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="3"
+                                                        data-num="3"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="3"
+                                                        data-num="3"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">下午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="4"
-                                                    data-num="3"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="4"
-                                                    data-num="3"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">下午 第一节</div>
+                                    @if(empty($four_three=$teamHasCourses->where('day',4)->where('num',3)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$four_three->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($four_three))
+                                                {{$four_three->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="4"
+                                                        data-num="3"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="4"
+                                                        data-num="3"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">下午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="5"
-                                                    data-num="3"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="5"
-                                                    data-num="3"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">下午 第一节</div>
+                                    @if(empty($five_three=$teamHasCourses->where('day',5)->where('num',3)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$five_three->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($five_three))
+                                                {{$five_three->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="5"
+                                                        data-num="3"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="5"
+                                                        data-num="3"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">下午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="6"
-                                                    data-num="3"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="6"
-                                                    data-num="3"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">下午 第一节</div>
+                                    @if(empty($six_three=$teamHasCourses->where('day',6)->where('num',3)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$six_three->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($six_three))
+                                                {{$six_three->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="6"
+                                                        data-num="3"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="6"
+                                                        data-num="3"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
-                                <div class="tpl-table-images-content-i-time">下午 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="7"
-                                                    data-num="3"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="7"
-                                                    data-num="3"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
+                                    <div class="tpl-table-images-content-i-time">下午 第一节</div>
+                                    @if(empty($sun_three=$teamHasCourses->where('day',7)->where('num',3)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$sun_three->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($sun_three))
+                                                {{$sun_three->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="7"
+                                                        data-num="3"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="7"
+                                                        data-num="3"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{-- 下午 第二节课 --}}
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">下午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="1"
-                                                    data-num="4"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="1"
-                                                    data-num="4"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        {{-- 下午 第二节课 --}}
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">下午 第二节</div>
+                                    @if(empty($one_four=$teamHasCourses->where('day',1)->where('num',4)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$one_four->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($one_four))
+                                                {{$one_four->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="1"
+                                                        data-num="4"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="1"
+                                                        data-num="4"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">下午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="2"
-                                                    data-num="4"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="2"
-                                                    data-num="4"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">下午 第二节</div>
+                                    @if(empty($two_four=$teamHasCourses->where('day',2)->where('num',4)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$two_four->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($two_four))
+                                                {{$two_four->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="2"
+                                                        data-num="4"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="2"
+                                                        data-num="4"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">下午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="3"
-                                                    data-num="4"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="3"
-                                                    data-num="4"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">下午 第二节</div>
+                                    @if(empty($three_four=$teamHasCourses->where('day',3)->where('num',4)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$three_four->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($three_four))
+                                                {{$three_four->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="3"
+                                                        data-num="4"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="3"
+                                                        data-num="4"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">下午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="4"
-                                                    data-num="4"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="4"
-                                                    data-num="4"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">下午 第二节</div>
+                                    @if(empty($four_four=$teamHasCourses->where('day',4)->where('num',4)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$four_four->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($four_four))
+                                                {{$four_four->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="4"
+                                                        data-num="4"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="4"
+                                                        data-num="4"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">下午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="5"
-                                                    data-num="4"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="5"
-                                                    data-num="4"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">下午 第二节</div>
+                                    @if(empty($five_four=$teamHasCourses->where('day',5)->where('num',4)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$five_four->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($five_four))
+                                                {{$five_four->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="5"
+                                                        data-num="4"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="5"
+                                                        data-num="4"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">下午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="6"
-                                                    data-num="4"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="6"
-                                                    data-num="4"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">下午 第二节</div>
+                                    @if(empty($six_four=$teamHasCourses->where('day',6)->where('num',4)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$six_four->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($six_four))
+                                                {{$six_four->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="6"
+                                                        data-num="4"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="6"
+                                                        data-num="4"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">下午 第二节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="7"
-                                                    data-num="4"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="7"
-                                                    data-num="4"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">下午 第二节</div>
+                                    @if(empty($sun_four=$teamHasCourses->where('day',7)->where('num',4)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$sun_four->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($sun_four))
+                                                {{$sun_four->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="7"
+                                                        data-num="4"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="7"
+                                                        data-num="4"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{-- 晚上 第一节课 --}}
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">晚上 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
+                        {{-- 晚上 第一节课 --}}
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">晚上 第一节</div>
+                                    @if(empty($one_five=$teamHasCourses->where('day',1)->where('num',5)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$one_five->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($one_five))
+                                                {{$one_five->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="1"
+                                                        data-num="5"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="1"
+                                                        data-num="5"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="1"
-                                                    data-num="5"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="1"
-                                                    data-num="5"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">晚上 第一节</div>
+                                    @if(empty($two_five=$teamHasCourses->where('day',2)->where('num',5)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$two_five->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($two_five))
+                                                {{$two_five->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="2"
+                                                        data-num="5"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="2"
+                                                        data-num="5"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">晚上 第一节</div>
+                                    @if(empty($three_five=$teamHasCourses->where('day',3)->where('num',5)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$three_five->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($three_five))
+                                                {{$three_five->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="3"
+                                                        data-num="5"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="3"
+                                                        data-num="5"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">晚上 第一节</div>
+                                    @if(empty($four_five=$teamHasCourses->where('day',4)->where('num',5)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$four_five->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($four_five))
+                                                {{$four_five->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="4"
+                                                        data-num="5"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="4"
+                                                        data-num="5"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">晚上 第一节</div>
+                                    @if(empty($five_five=$teamHasCourses->where('day',5)->where('num',5)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$five_five->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($five_five))
+                                                {{$five_five->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="5"
+                                                        data-num="5"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="5"
+                                                        data-num="5"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">晚上 第一节</div>
+                                    @if(empty($six_five=$teamHasCourses->where('day',6)->where('num',5)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$six_five->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($six_five))
+                                                {{$six_five->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="6"
+                                                        data-num="5"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="6"
+                                                        data-num="5"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tpl-table-images">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
+                                <div class="tpl-table-images-content">
+                                    <div class="tpl-table-images-content-i-time">晚上 第一节</div>
+                                    @if(empty($sun_five=$teamHasCourses->where('day',7)->where('num',5)->first()))
+                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                            <center>无</center>
+                                        </div>
+                                    @else
+                                        {{$sun_five->course->name??''}}
+                                    @endif
+                                    <div class="tpl-table-images-content-block">
+                                        <div class="tpl-i-more">
+                                            @if(!empty($sun_five))
+                                                {{$sun_five->course->classroom??''}}
+                                            @endif
+                                        </div>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                                <button type="button"
+                                                        class="edit am-btn am-btn-default am-btn-secondary"
+                                                        data-day="7"
+                                                        data-num="5"><span
+                                                            class="am-icon-edit"></span> 编辑
+                                                </button>
+                                                <button type="button" class="del am-btn am-btn-default am-btn-danger"
+                                                        data-day="7"
+                                                        data-num="5"><span
+                                                            class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">晚上 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="2"
-                                                    data-num="5"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="2"
-                                                    data-num="5"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                @else
+                    <div class="am-g" style="min-height: 1024px">
+                        <center>请选择所要设置班级</center>
                     </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">晚上 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="3"
-                                                    data-num="5"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="3"
-                                                    data-num="5"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">晚上 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="4"
-                                                    data-num="5"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="4"
-                                                    data-num="5"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">晚上 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="5"
-                                                    data-num="5"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="5"
-                                                    data-num="5"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">晚上 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="6"
-                                                    data-num="5"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="6"
-                                                    data-num="5"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tpl-table-images">
-                        <div class="am-u-sm-12 am-u-md-6 am-u-lg-2 zxz">
-                            <div class="tpl-table-images-content">
-                                <div class="tpl-table-images-content-i-time">晚上 第一节</div>
-                                <div class="tpl-i-title">
-                                    C语言～郭庆
-                                </div>
-                                <div class="tpl-table-images-content-block">
-                                    <div class="tpl-i-more">
-                                        主角楼321
-                                    </div>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                            <button type="button"
-                                                    class="edit am-btn am-btn-default am-btn-secondary"
-                                                    data-day="7"
-                                                    data-num="5"><span
-                                                        class="am-icon-edit"></span> 编辑
-                                            </button>
-                                            <button type="button" class="del am-btn am-btn-default am-btn-danger"
-                                                    data-day="7"
-                                                    data-num="5"><span
-                                                        class="am-icon-trash-o"></span> 删除
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
             <div class="tpl-alert"></div>
         </div>
@@ -1131,8 +1349,8 @@
                         <label for="name">选择课程</label>
                         <select class="form-control" id="course_id">
                             @foreach($courses as $course)
-                            <option value="{{$course->id}}">{{$course->name}}</option>
-                                @endforeach
+                                <option value="{{$course->id}}">{{$course->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -1145,43 +1363,47 @@
     </div>
 @endsection
 @section('script')
-    <script src="/vendors/bootstrap/js/bootstrap.js"></script>
+    {{--<script src="/vendors/bootstrap/js/bootstrap.js"></script>--}}
+    <script src="/modal.js?166"></script>
     <script src="{{url('/vendors/sweet-alert/js/sweet-alert.min.js')}}"></script>
     <script>
+        $('#team_id').change(function () {
+            location.href = '/team_has_courses?team_id=' + $(this).val();
+        });
         $('.edit').click(function () {
             $('.js_gqsb').data('num', $(this).data('num')).data('day', $(this).data('day'));
             $('.js_modal').click();
         });
         $('.js_gqsb').click(function () {
-          var url = ' team_has_courses';
-          $.ajax({
-            url: url,
-            data: {
-              '_token': '{{ csrf_token() }}',
-              'day': $(this).data('day'),
-              'num': $(this).data('num'),
-              'course_id': $('#course_id').val(),
-              'team_id': $('#team_id').val()
-            },
-            type: 'post',
-            success: function (data) {
-              if (data.StatusCode === 200) {
-                swal({
-                  title: '删除成功！',
-                  text: '同时该课程表下的用户也失效',
-                  type: "success",
-                  showCancelButton: false,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: '确认',
-                  closeOnConfirm: false,
-                }, function (isConfirm) {
-                  location.reload();
-                });
-              } else {
-                swal("操作失败!", data.ResultData, 'error');
-              }
-            }
-          });
+            var url = ' team_has_courses';
+            $.ajax({
+                url: url,
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'day': $(this).data('day'),
+                    'num': $(this).data('num'),
+                    'course_id': $('#course_id').val(),
+                    'team_id': $('#team_id').val()
+                },
+                type: 'post',
+                success: function (data) {
+                    if (data.StatusCode === 200) {
+                        swal({
+                            title: '设置成功！',
+                            text: '课表更新成功',
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: '确认',
+                            closeOnConfirm: false,
+                        }, function (isConfirm) {
+                            location.reload();
+                        });
+                    } else {
+                        swal("操作失败!", data.ResultData, 'error');
+                    }
+                }
+            });
         });
         // 单选删除操作
         $('.del').click(function () {
@@ -1196,7 +1418,7 @@
                     if (data.StatusCode === 200) {
                         swal({
                             title: '删除成功！',
-                            text: '同时该课程表下的用户也失效',
+                            text: '删除课程成功',
                             type: "success",
                             showCancelButton: false,
                             confirmButtonColor: "#DD6B55",

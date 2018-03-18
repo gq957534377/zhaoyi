@@ -18,6 +18,7 @@ class CreateTeamHasCoursesTable extends Migration
             $table->integer('course_id');
             $table->integer('day');
             $table->integer('num');
+            $table->timestamps();
         });
     }
 

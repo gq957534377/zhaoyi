@@ -15,7 +15,7 @@ class TeamHasCourseController extends Controller
         $teams = Team::all();
         $courses = Course::all();
         if (!empty($request->team_id)) {
-            $teamHasCourses = TeamHasCourse::where('team_id', $request->team_id)->get();
+            $teamHasCourses = TeamHasCourse::with('course')->where('team_id', $request->team_id)->get();
         } else {
             $teamHasCourses = collect([]);
         }
