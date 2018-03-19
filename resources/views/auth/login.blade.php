@@ -16,24 +16,28 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        html, body {
+            height: 100% !important;
+        }
+    </style>
 </head>
 
 <body data-type="login">
-
 <div class="am-g myapp-login">
     <div class="myapp-login-logo-block  tpl-login-max">
         <div class="myapp-login-logo-text">
             <div class="myapp-login-logo-text">
-                Amaze UI<span> Login</span> <i class="am-icon-skyatlas"></i>
+                成绩管理系统<span> Login</span> <i class="am-icon-skyatlas"></i>
             </div>
         </div>
         <div class="login-font">
-            <i>Log In </i> or <span> Sign Up</span>
+            <i>Log In </i>
         </div>
         @if (!empty($errors))
             <span class="help-block">
-                                        <strong>{{ $errors->first() }}</strong>
-                                    </span>
+                <strong>{{ $errors->first() }}</strong>
+            </span>
         @endif
         <div class="am-u-sm-10 login-am-center">
             <form class="am-form" method="POST" action="{{ route('login') }}">

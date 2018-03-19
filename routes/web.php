@@ -91,6 +91,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('change_pwd_view', 'UsersController@changePwdView');
     // 修改密码操作
     Route::post('change_pwd', 'UsersController@changePwd');
+
+    /*
+    |--------------------------------------------------------------------------
+    | 班级课程管理
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('grades', 'GradesController');
 });
 
 

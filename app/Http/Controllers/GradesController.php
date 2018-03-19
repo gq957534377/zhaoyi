@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
 class GradesController extends Controller
 {
     /**
-     * 说明:  成绩列表
+     * 说明:  返回当前登录用户的成绩表
+     * @param Request $request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @author 郭庆
      */
-    public function index()
+    public function index(Request $request)
     {
-        $role = Role::where('name', 'dean')->first();
+        $where['semester'] = $request->semester ?? null;
+        $grades = Grade::where(array_filter($where))->get();
 
-        $deans = $role->users??collect([]);
-        return view('deans.index', ['deans' => $deans]);
+        return view('grades.index', ['grades' => $grades]);
     }
 
     /**
@@ -40,26 +42,7 @@ class GradesController extends Controller
      */
     public function store(Request $request)
     {
-        // 事务处理同时插入登录表和公司表
-        \DB::beginTransaction();
-        try {
-            // 登录表
-            $user = User::create([
-                'name' => $request->name,
-                'no' => $request->no,
-                'password' => bcrypt($request->password),
-                'status' => 1,
-            ]);
 
-            // 将该用户绑定为公司角色
-            $user->assignRole('dean');
-            \DB::commit();
-        } catch (\Exception $e) {
-            \DB::rollBack();
-            \Log::error('添加成绩失败：' . $e->getMessage() . $e->getLine() . $e->getFile());
-            return back()->withInput()->withErrors('添加失败！');
-        }
-        return redirect('/deans')->withErrors('添加成功！', 'success');
     }
 
     /**
@@ -69,9 +52,9 @@ class GradesController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @author 郭庆
      */
-    public function edit(User $dean)
+    public function edit()
     {
-        return view('deans.edit', ['dean' => $dean]);
+
     }
 
     /**
@@ -82,15 +65,9 @@ class GradesController extends Controller
      * @return mixed
      * @author 郭庆
      */
-    public function update(User $dean, Request $request)
+    public function update()
     {
-        $data = $request->except('_token', '_method');
 
-        $result = User::where(['id' => $dean->id])->update($data);
-
-        if (empty($result)) return back()->withErrors('修改失败!');
-
-        return redirect('/deans')->withErrors('修改成功!', 'success');
     }
 
     /**
@@ -100,10 +77,8 @@ class GradesController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @author 郭庆
      */
-    public function destroy(User $dean)
+    public function destroy()
     {
-        if (empty($dean->delete())) return response()->json(['StatusCode' => 500, 'ResultData' => '删除失败!']);
 
-        return response()->json(['StatusCode' => 200, 'ResultData' => '删除成功!']);
     }
 }
