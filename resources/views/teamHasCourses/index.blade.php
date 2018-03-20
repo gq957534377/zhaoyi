@@ -83,11 +83,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">上午 第一节</div>
                                     @if(empty($one_one=$teamHasCourses->where('day',1)->where('num',1)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$one_one->course->name??''}}
+                                        {{$one_one->course->name??''}}<br>
+                                        {{$one_one->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -122,11 +123,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">上午 第一节</div>
                                     @if(empty($two_one=$teamHasCourses->where('day',2)->where('num',1)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$two_one->course->name??''}}
+                                        {{$two_one->course->name??''}}<br>
+                                        {{$two_one->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -161,11 +163,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">上午 第一节</div>
                                     @if(empty($three_one=$teamHasCourses->where('day',3)->where('num',1)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$three_one->course->name??''}}
+                                        {{$three_one->course->name??''}}<br>
+                                        {{$three_one->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -200,11 +203,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">上午 第一节</div>
                                     @if(empty($four_one=$teamHasCourses->where('day',4)->where('num',1)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$four_one->course->name??''}}
+                                        {{$four_one->course->name??''}}<br>
+                                        {{$four_one->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -239,11 +243,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">上午 第一节</div>
                                     @if(empty($five_one=$teamHasCourses->where('day',5)->where('num',1)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$five_one->course->name??''}}
+                                        {{$five_one->course->name??''}}<br>
+                                        {{$five_one->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -278,11 +283,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">上午 第一节</div>
                                     @if(empty($six_one=$teamHasCourses->where('day',6)->where('num',1)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$six_one->course->name??''}}
+                                        {{$six_one->course->name??''}}<br>
+                                        {{$six_one->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -317,11 +323,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">上午 第一节</div>
                                     @if(empty($sun_one=$teamHasCourses->where('day',7)->where('num',1)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$sun_one->course->name??''}}
+                                        {{$sun_one->course->name??''}}<br>
+                                        {{$sun_one->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -357,11 +364,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">上午 第二节</div>
                                     @if(empty($one_two=$teamHasCourses->where('day',1)->where('num',2)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$one_two->course->name??''}}
+                                        {{$one_two->course->name??''}}<br>
+                                        {{$one_two->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -395,11 +403,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">上午 第二节</div>
                                     @if(empty($two_two=$teamHasCourses->where('day',2)->where('num',2)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$two_two->course->name??''}}
+                                        {{$two_two->course->name??''}}<br>
+                                        {{$two_two->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -433,11 +442,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">上午 第二节</div>
                                     @if(empty($three_two=$teamHasCourses->where('day',3)->where('num',2)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$three_two->course->name??''}}
+                                        {{$three_two->course->name??''}}<br>
+                                        {{$three_two->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -471,11 +481,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">上午 第二节</div>
                                     @if(empty($four_two=$teamHasCourses->where('day',4)->where('num',2)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$four_two->course->name??''}}
+                                        {{$four_two->course->name??''}}<br>
+                                        {{$four_two->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -509,11 +520,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">上午 第二节</div>
                                     @if(empty($five_two=$teamHasCourses->where('day',5)->where('num',2)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$five_two->course->name??''}}
+                                        {{$five_two->course->name??''}}<br>
+                                        {{$five_two->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -547,11 +559,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">上午 第二节</div>
                                     @if(empty($six_two=$teamHasCourses->where('day',6)->where('num',2)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$six_two->course->name??''}}
+                                        {{$six_two->course->name??''}}<br>
+                                        {{$six_two->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -585,11 +598,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">上午 第二节</div>
                                     @if(empty($sun_two=$teamHasCourses->where('day',7)->where('num',2)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$sun_two->course->name??''}}
+                                        {{$sun_two->course->name??''}}<br>
+                                        {{$sun_two->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -625,11 +639,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">下午 第一节</div>
                                     @if(empty($one_three=$teamHasCourses->where('day',1)->where('num',3)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$one_three->course->name??''}}
+                                        {{$one_three->course->name??''}}<br>
+                                        {{$one_three->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -663,11 +678,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">下午 第一节</div>
                                     @if(empty($two_three=$teamHasCourses->where('day',2)->where('num',3)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$two_three->course->name??''}}
+                                        {{$two_three->course->name??''}}<br>
+                                        {{$two_three->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -701,11 +717,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">下午 第一节</div>
                                     @if(empty($three_three=$teamHasCourses->where('day',3)->where('num',3)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$three_three->course->name??''}}
+                                        {{$three_three->course->name??''}}<br>
+                                        {{$three_three->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -739,11 +756,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">下午 第一节</div>
                                     @if(empty($four_three=$teamHasCourses->where('day',4)->where('num',3)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$four_three->course->name??''}}
+                                        {{$four_three->course->name??''}}<br>
+                                        {{$four_three->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -777,11 +795,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">下午 第一节</div>
                                     @if(empty($five_three=$teamHasCourses->where('day',5)->where('num',3)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$five_three->course->name??''}}
+                                        {{$five_three->course->name??''}}<br>
+                                        {{$five_three->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -815,11 +834,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">下午 第一节</div>
                                     @if(empty($six_three=$teamHasCourses->where('day',6)->where('num',3)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$six_three->course->name??''}}
+                                        {{$six_three->course->name??''}}<br>
+                                        {{$six_three->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -853,11 +873,12 @@
                                 <div class="tpl-table-images-content" style="margin-bottom:0 !important;">
                                     <div class="tpl-table-images-content-i-time">下午 第一节</div>
                                     @if(empty($sun_three=$teamHasCourses->where('day',7)->where('num',3)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$sun_three->course->name??''}}
+                                        {{$sun_three->course->name??''}}<br>
+                                        {{$sun_three->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -893,11 +914,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">下午 第二节</div>
                                     @if(empty($one_four=$teamHasCourses->where('day',1)->where('num',4)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$one_four->course->name??''}}
+                                        {{$one_four->course->name??''}}<br>
+                                        {{$one_four->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -931,11 +953,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">下午 第二节</div>
                                     @if(empty($two_four=$teamHasCourses->where('day',2)->where('num',4)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$two_four->course->name??''}}
+                                        {{$two_four->course->name??''}}<br>
+                                        {{$two_four->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -969,11 +992,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">下午 第二节</div>
                                     @if(empty($three_four=$teamHasCourses->where('day',3)->where('num',4)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$three_four->course->name??''}}
+                                        {{$three_four->course->name??''}}<br>
+                                        {{$three_four->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1007,11 +1031,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">下午 第二节</div>
                                     @if(empty($four_four=$teamHasCourses->where('day',4)->where('num',4)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$four_four->course->name??''}}
+                                        {{$four_four->course->name??''}}<br>
+                                        {{$four_four->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1045,11 +1070,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">下午 第二节</div>
                                     @if(empty($five_four=$teamHasCourses->where('day',5)->where('num',4)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$five_four->course->name??''}}
+                                        {{$five_four->course->name??''}}<br>
+                                        {{$five_four->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1083,11 +1109,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">下午 第二节</div>
                                     @if(empty($six_four=$teamHasCourses->where('day',6)->where('num',4)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$six_four->course->name??''}}
+                                        {{$six_four->course->name??''}}<br>
+                                        {{$six_four->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1121,11 +1148,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">下午 第二节</div>
                                     @if(empty($sun_four=$teamHasCourses->where('day',7)->where('num',4)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$sun_four->course->name??''}}
+                                        {{$sun_four->course->name??''}}<br>
+                                        {{$sun_four->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1161,11 +1189,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">晚上 第一节</div>
                                     @if(empty($one_five=$teamHasCourses->where('day',1)->where('num',5)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$one_five->course->name??''}}
+                                        {{$one_five->course->name??''}}<br>
+                                        {{$one_five->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1199,11 +1228,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">晚上 第一节</div>
                                     @if(empty($two_five=$teamHasCourses->where('day',2)->where('num',5)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$two_five->course->name??''}}
+                                        {{$two_five->course->name??''}}<br>
+                                        {{$two_five->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1237,11 +1267,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">晚上 第一节</div>
                                     @if(empty($three_five=$teamHasCourses->where('day',3)->where('num',5)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$three_five->course->name??''}}
+                                        {{$three_five->course->name??''}}<br>
+                                        {{$three_five->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1275,11 +1306,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">晚上 第一节</div>
                                     @if(empty($four_five=$teamHasCourses->where('day',4)->where('num',5)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$four_five->course->name??''}}
+                                        {{$four_five->course->name??''}}<br>
+                                        {{$four_five->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1313,11 +1345,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">晚上 第一节</div>
                                     @if(empty($five_five=$teamHasCourses->where('day',5)->where('num',5)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$five_five->course->name??''}}
+                                        {{$five_five->course->name??''}}<br>
+                                        {{$five_five->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1351,11 +1384,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">晚上 第一节</div>
                                     @if(empty($six_five=$teamHasCourses->where('day',6)->where('num',5)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$six_five->course->name??''}}
+                                        {{$six_five->course->name??''}}<br>
+                                        {{$six_five->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1389,11 +1423,12 @@
                                 <div class="tpl-table-images-content">
                                     <div class="tpl-table-images-content-i-time">晚上 第一节</div>
                                     @if(empty($sun_five=$teamHasCourses->where('day',7)->where('num',5)->first()))
-                                        <div class="tpl-i-title" style="margin-bottom: 10px">
+                                        <div class="tpl-i-title" style="margin-bottom: 30px">
                                             <center>无</center>
                                         </div>
                                     @else
-                                        {{$sun_five->course->name??''}}
+                                        {{$sun_five->course->name??''}}<br>
+                                        {{$sun_five->course->teacher->name??''}}
                                     @endif
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-more">
@@ -1446,7 +1481,7 @@
                         <label for="name">选择课程</label>
                         <select class="form-control" id="course_id">
                             @foreach($courses as $course)
-                                <option value="{{$course->id}}">{{$course->name}}</option>
+                                <option value="{{$course->id}}">{{$course->name.'--'.$course->teacher->name??''}}</option>
                             @endforeach
                         </select>
                     </div>
