@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Grade;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,6 @@ class GradesController extends Controller
      */
     public function index(Request $request)
     {
-        $where['semester'] = $request->semester ?? null;
-        $grades = Grade::where(array_filter($where))->get();
 
         return view('grades.index', ['grades' => $grades]);
     }
@@ -30,7 +29,15 @@ class GradesController extends Controller
      */
     public function create()
     {
-        return view('deans.create');
+        return view('grades.create');
+    }
+
+    public function show()
+    {
+        $where['semester'] = $request->semester ?? null;
+        $grades = Grade::where(array_filter($where))->get();
+
+        return view('grades.index', ['grades' => $grades]);
     }
 
     /**

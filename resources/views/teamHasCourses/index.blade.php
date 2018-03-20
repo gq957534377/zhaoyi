@@ -43,6 +43,33 @@
                                 @if(!empty(request('team_id')) && request('team_id')==$team->id) selected @endif>{{$team->class}}</option>
                     @endforeach
                 </select>
+                <select name="semester" id="semester" data-am-selected="{searchBox: 1}">
+                    <option value="1" @if(!empty(request('semester')) && request('semester')==1) selected @endif>
+                        大一第一学期
+                    </option>
+                    <option value="2" @if(!empty(request('semester')) && request('semester')==2) selected @endif>
+                        大一第二学期
+                    </option>
+                    <option value="3" @if(!empty(request('semester')) && request('semester')==3) selected @endif>
+                        大二第一学期
+                    </option>
+                    <option value="4" @if(!empty(request('semester')) && request('semester')==4) selected @endif>
+                        大二第二学期
+                    </option>
+                    <option value="5" @if(!empty(request('semester')) && request('semester')==5) selected @endif>
+                        大三第一学期
+                    </option>
+                    <option value="6" @if(!empty(request('semester')) && request('semester')==6) selected @endif>
+                        大三第二学期
+                    </option>
+                    <option value="7" @if(!empty(request('semester')) && request('semester')==7) selected @endif>
+                        大四第一学期
+                    </option>
+                    <option value="8" @if(!empty(request('semester')) && request('semester')==8) selected @endif>
+                        大四第二学期
+                    </option>
+                </select>
+
                 <button type="button"
                         class="download am-btn am-btn-default am-btn-secondary">
                     <span class="am-icon-save"></span> 下载
@@ -1433,12 +1460,14 @@
     </div>
 @endsection
 @section('script')
-    {{--<script src="/vendors/bootstrap/js/bootstrap.js"></script>--}}
-    <script src="/modal.js?166"></script>
+    <script src="/modal.js"></script>
     <script src="{{url('/vendors/sweet-alert/js/sweet-alert.min.js')}}"></script>
     <script>
         $('#team_id').change(function () {
-            location.href = '/team_has_courses?team_id=' + $(this).val();
+            location.href = '/team_has_courses?team_id=' + $(this).val() + '&semester=' + $('#semester').val();
+        });
+        $('#semester').change(function () {
+            location.href = '/team_has_courses?semester=' + $(this).val() + '&team_id=' + $('#team_id').val();
         });
         $('.edit').click(function () {
             $('.js_gqsb').data('num', $(this).data('num')).data('day', $(this).data('day'));
@@ -1453,7 +1482,8 @@
                     'day': $(this).data('day'),
                     'num': $(this).data('num'),
                     'course_id': $('#course_id').val(),
-                    'team_id': $('#team_id').val()
+                    'team_id': $('#team_id').val(),
+                    'semester': $('#semester').val(),
                 },
                 type: 'post',
                 success: function (data) {

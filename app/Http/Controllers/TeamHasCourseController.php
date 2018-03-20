@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\TeamHasCourse;
 use App\Models\TeamHasUser;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class TeamHasCourseController extends Controller
 {
@@ -14,15 +15,16 @@ class TeamHasCourseController extends Controller
     {
         $teams = Team::all();
         $courses = Course::all();
+
         if (!empty($request->team_id)) {
-            $teamHasCourses = TeamHasCourse::with('course')->where('team_id', $request->team_id)->get();
+            $teamHasCourses = TeamHasCourse::with('course')->where(['team_id' => $request->team_id, 'semester' => $request->semester ?? 1])->get();
         } else {
             $teamHasCourses = collect([]);
         }
         return view('teamHasCourses.index', [
             'teamHasCourses' => $teamHasCourses,
             'teams' => $teams,
-            'courses' => $courses
+            'courses' => $courses,
         ]);
     }
 
@@ -38,7 +40,7 @@ class TeamHasCourseController extends Controller
         $teamHasCourse = TeamHasCourse::where([
             'team_id' => $request->team_id,
             'day' => $request->day,
-            'num' => $request->num
+            'num' => $request->num,
         ])->first();
         if (empty($teamHasCourse)) {
             $create = TeamHasCourse::create([
@@ -46,16 +48,16 @@ class TeamHasCourseController extends Controller
                 'day' => $request->day,
                 'num' => $request->num,
                 'course_id' => $request->course_id,
+                'semester' => $request->semester,
             ]);
             if (empty($create))
                 return response()->json(['StatusCode' => 500, 'ResultData' => '设置失败，请联系管理员']);
             return response()->json(['StatusCode' => 200, 'ResultData' => '设置成功']);
         }
 
-        if ($teamHasCourse->course_id != $request->course_id) {
-            $teamHasCourse->course_id = $request->course_id;
-            $teamHasCourse->save();
-        }
+        $teamHasCourse->course_id = $request->course_id;
+        $teamHasCourse->semester = $request->semester;
+        $teamHasCourse->save();
         return response()->json(['StatusCode' => 200, 'ResultData' => '设置成功']);
     }
 
