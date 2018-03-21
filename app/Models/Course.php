@@ -17,6 +17,17 @@ class Course extends Model
      */
     public function teacher()
     {
-        return $this->hasOne('App\User','id','teacher_id');
+        return $this->hasOne('App\User', 'id', 'teacher_id');
+    }
+
+    /**
+     * 说明: 返回代课班级课表关联数据
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @author 郭庆
+     */
+    public function teamCourses()
+    {
+        return $this->hasMany(TeamHasCourse::class, 'course_id', 'id');
     }
 }

@@ -19,4 +19,15 @@ class TeamHasCourse extends Model
     {
         return $this->hasOne(Course::class, 'id', 'course_id');
     }
+
+    /**
+     * 说明: 班级信息
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @author 郭庆
+     */
+    public function team()
+    {
+        return $this->hasOne(Team::class, 'id', 'team_id');
+    }
 }

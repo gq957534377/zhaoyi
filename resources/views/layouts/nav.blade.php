@@ -159,6 +159,27 @@
     </li>
 
     <li class="tpl-left-nav-item">
+        <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+            <i class="am-icon-table"></i>
+            <span>成绩管理</span>
+            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+        </a>
+        <ul class="tpl-left-nav-sub-menu">
+            <li>
+                <a href="{{url('/grades')}}">
+                    <i class="am-icon-angle-right"></i>
+                    <span>成绩录入</span>
+                </a>
+
+                <a href="{{url('/grades/1')}}">
+                    <i class="am-icon-angle-right"></i>
+                    <span>我的成绩</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="tpl-left-nav-item">
         <a href="{{url('/team_has_courses')}}" class="nav-link @if(request()->path()=='team_has_courses') active @endif">
             <i class="am-icon-home"></i>
             <span>班级课程管理</span>

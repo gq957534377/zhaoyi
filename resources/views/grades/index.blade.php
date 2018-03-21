@@ -30,48 +30,46 @@
                             <thead>
                             <tr>
                                 <th class="table-id">ID</th>
-                                <th class="table-title">课程名</th>
-                                <th class="table-title">学生数</th>
-                                <th class="table-type">状态</th>
+                                <th class="table-title">学生名</th>
+                                <th class="table-title">成绩</th>
                                 <th class="table-date am-hide-sm-only">修改日期</th>
                                 <th class="table-set">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if(!empty($grades->count()))
-                                @foreach($grades as $grade)
-                                    <tr>
-                                        <td>{{$grade->id}}</td>
-                                        <td>
-                                            <a href="{{ url('/grades/'.$grade->id.'/edit') }}">{{$grade->name}}</a>
-                                        </td>
-                                        <td>{{$grade->class->first()->class??'暂无'}}</td>
-                                        <td>{{$grade->no}}</td>
-                                        <td class="am-hide-sm-only">{{$grade->updated_at}}</td>
-                                        <td>
-                                            <div class="am-btn-toolbar">
-                                                <div class="am-btn-group am-btn-group-xs">
-                                                    <a href="{{ url('/grades/'.$grade->id.'/edit') }}">
-                                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                                    class="am-icon-pencil-square-o"></span> 编辑
-                                                        </button>
-                                                    </a>
-                                                    <a href="javascript:;">
-                                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del"
-                                                                data-id="{{$grade->id}}">
-                                                            <span class="am-icon-trash-o"></span> 删除
-                                                        </button>
-                                                    </a>
-                                                </div>
+                            @if($StatusCode==200))
+                            @foreach($students as $student)
+                                <tr>
+                                    <td>{{$student->id}}</td>
+                                    <td>
+                                        <a>{{$student->name}}</a>
+                                    </td>
+                                    <td>{{$student->class->first()->class??'暂无'}}</td>
+                                    <td class="am-hide-sm-only">{{$student->updated_at}}</td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a href="{{ url('/grades/'.$student->id.'/edit') }}">
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                                class="am-icon-pencil-square-o"></span> 编辑
+                                                    </button>
+                                                </a>
+                                                <a href="javascript:;">
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del"
+                                                            data-id="{{$student->id}}">
+                                                        <span class="am-icon-trash-o"></span> 删除
+                                                    </button>
+                                                </a>
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                             @else
                                 <tr>
                                     <td colspan="5">
                                         <center>
-                                            暂无成绩,请添加成绩
+                                            {{$ResultData}}
                                         </center>
                                     </td>
                                 </tr>
