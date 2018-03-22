@@ -86,34 +86,40 @@
                             </thead>
                             <tbody>
                             @if($StatusCode==200)
-                            @foreach($ResultData as $student)
-                                <tr>
-                                    <td>{{$student->id}}</td>
-                                    <td>{{$student->class->first()->class??'暂无'}}</td>
-                                    <td>
-                                        <a>{{$student->name}}</a>
-                                    </td>
-                                    <td>{{$student->grade??'暂无'}}</td>
-                                    <td class="am-hide-sm-only">{{$student->updated_at}}</td>
-                                    <td>
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs">
-                                                <a href="{{ url('/grades/'.$student->id.'/edit') }}">
-                                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                                class="am-icon-pencil-square-o"></span> 编辑
-                                                    </button>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del"
-                                                            data-id="{{$student->id}}">
-                                                        <span class="am-icon-trash-o"></span> 删除
-                                                    </button>
-                                                </a>
+                                @foreach($ResultData as $student)
+                                    <tr>
+                                        <td>{{$student->id}}</td>
+                                        <td>{{$student->class->first()->class??'暂无'}}</td>
+                                        <td>
+                                            <a>{{$student->name}}</a>
+                                        </td>
+                                        <td>{{$student->grade??'暂无'}}</td>
+                                        <td class="am-hide-sm-only">{{$student->updated_at}}</td>
+                                        <td>
+                                            <div class="am-btn-toolbar">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <a href="{{ url('/grades/'.$student->id.'/edit') }}">
+                                                        <button data-grade_id="{{$student->grade_id}}"
+                                                                data-course_id="{{$student->grade_id}}"
+                                                                data-student_id="{{$student->id}}"
+                                                                class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                                    class="am-icon-pencil-square-o"></span> 编辑
+                                                        </button>
+                                                    </a>
+                                                    @if(!empty($student->grade_id))
+                                                        <a href="javascript:;">
+                                                            <button data-grade_id="{{$student->grade_id}}"
+                                                                    class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del"
+                                                                    data-id="{{$student->id}}">
+                                                                <span class="am-icon-trash-o"></span> 删除
+                                                            </button>
+                                                        </a>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @else
                                 <tr>
                                     <td colspan="5">

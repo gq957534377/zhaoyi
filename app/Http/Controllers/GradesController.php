@@ -52,6 +52,7 @@ class GradesController extends Controller
             ])->first();
 
             $student->grade = $grade->grade ?? null;
+            $student->grade_id = $grade->id ?? null;
             return $student;
         });
 
