@@ -10,6 +10,7 @@ use App\Models\TeamHasUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function PHPSTORM_META\map;
 use Spatie\Permission\Models\Role;
 
 class GradesController extends Controller
@@ -43,7 +44,17 @@ class GradesController extends Controller
             ->pluck('user_id')
             ->toArray();
 
-        $students = User::find($studentIds);
+        $students = User::find($studentIds)->map(function ($student) use ($request) {
+            $grade = Grade::where([
+                'student_id' => $student->id,
+                'course_id' => $request->course_id,
+                'semester' => $request->semester ?? 1
+            ])->first();
+
+            $student->grade = $grade->grade ?? null;
+            return $student;
+        });
+
         if (empty($students->count()))
             return view('grades.index', ['StatusCode' => 204, 'ResultData' => '该班级下暂无学生', 'courses' => $courses, 'teams' => $teams]);
         return view('grades.index', ['StatusCode' => 200, 'ResultData' => $students, 'courses' => $courses, 'teams' => $teams]);

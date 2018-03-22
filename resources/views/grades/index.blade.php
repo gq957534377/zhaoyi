@@ -77,6 +77,7 @@
                             <thead>
                             <tr>
                                 <th class="table-id">ID</th>
+                                <th class="table-title">班级</th>
                                 <th class="table-title">学生名</th>
                                 <th class="table-title">成绩</th>
                                 <th class="table-date am-hide-sm-only">修改日期</th>
@@ -88,10 +89,11 @@
                             @foreach($ResultData as $student)
                                 <tr>
                                     <td>{{$student->id}}</td>
+                                    <td>{{$student->class->first()->class??'暂无'}}</td>
                                     <td>
                                         <a>{{$student->name}}</a>
                                     </td>
-                                    <td>{{$student->class->first()->class??'暂无'}}</td>
+                                    <td>{{$student->grade??'暂无'}}</td>
                                     <td class="am-hide-sm-only">{{$student->updated_at}}</td>
                                     <td>
                                         <div class="am-btn-toolbar">
