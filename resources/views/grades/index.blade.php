@@ -98,19 +98,17 @@
                                         <td>
                                             <div class="am-btn-toolbar">
                                                 <div class="am-btn-group am-btn-group-xs">
-                                                    <a href="{{ url('/grades/'.$student->id.'/edit') }}">
+                                                    <a href="javascript:;" >
                                                         <button data-grade_id="{{$student->grade_id}}"
-                                                                data-course_id="{{$student->grade_id}}"
                                                                 data-student_id="{{$student->id}}"
-                                                                class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                                class="edit am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                                                     class="am-icon-pencil-square-o"></span> 编辑
                                                         </button>
                                                     </a>
                                                     @if(!empty($student->grade_id))
                                                         <a href="javascript:;">
                                                             <button data-grade_id="{{$student->grade_id}}"
-                                                                    class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del"
-                                                                    data-id="{{$student->id}}">
+                                                                    class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only del">
                                                                 <span class="am-icon-trash-o"></span> 删除
                                                             </button>
                                                         </a>
@@ -137,10 +135,39 @@
                 </div>
             </div>
             <div class="tpl-alert"></div>
+            <button class="hidden js_modal" data-toggle="modal" data-target="#myModal"></button>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top: 300px">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">修改</h4>
+                        </div>
+                        <input type="hidden" name="student_id" id="form-student_id">
+                        <div class="modal-body">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">成绩</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" name="grade" required id="grade"
+                                           placeholder="请输入成绩">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" data-num="" data-day="" class="btn btn-primary js_sub_grade">提交更改
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
         </div>
     </div>
 @endsection
 @section('script')
+    <script src="/modal.js"></script>
     <script src="{{url('/vendors/sweet-alert/js/sweet-alert.min.js')}}"></script>
     <script>
         $('#team_id').change(function () {
@@ -152,7 +179,11 @@
         $('#course_id').change(function () {
             location.href = '/grades?semester=' + $('#semester').val() + '&team_id=' + $('#team_id').val() + '&course_id=' + $('#course_id').val();
         });
-
+        $('.edit').click(function () {
+            $('.js_gqsb').data('num', $(this).data('num')).data('day', $(this).data('day'));
+            $('#form-student_id').val($(this).data('student_id'));
+            $('.js_modal').click();
+        });
         // 单选删除操作
         $('.del').click(function () {
             var url = ' grades/' + $(this).data('id');
@@ -165,6 +196,40 @@
                         swal({
                             title: '删除成功！',
                             text: '同时该成绩下的用户也失效',
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: '确认',
+                            closeOnConfirm: false,
+                        }, function (isConfirm) {
+                            location.reload();
+                        });
+                    } else {
+                        swal("操作失败!", data.ResultData, 'error');
+                    }
+                }
+            });
+        });
+
+        // 提交成绩
+        $('.js_sub_grade').click(function () {
+            var url = '/grades';
+            $.ajax({
+                url: url,
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'day': $(this).data('day'),
+                    'num': $(this).data('num'),
+                    'course_id': $('#course_id').val(),
+                    'team_id': $('#team_id').val(),
+                    'semester': $('#semester').val(),
+                },
+                type: 'post',
+                success: function (data) {
+                    if (data.StatusCode === 200) {
+                        swal({
+                            title: '设置成功！',
+                            text: '课表更新成功',
                             type: "success",
                             showCancelButton: false,
                             confirmButtonColor: "#DD6B55",
