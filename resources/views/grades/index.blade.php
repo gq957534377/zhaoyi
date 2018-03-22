@@ -23,6 +23,53 @@
                     <span class="am-icon-code"></span> 成绩列表
                 </div>
             </div>
+
+            <label for="">所带课程</label>
+            <select name="" id="course_id" data-am-selected="{searchBox: 1}">
+                <option value="">请选择课程</option>
+                @foreach($courses as $course)
+                    <option value="{{$course->id}}"
+                            @if(!empty(request('course_id')) && request('course_id')==$course->id) selected @endif>{{$course->name}}</option>
+                @endforeach
+            </select>
+
+            <label for="">所带班级</label>
+            <select name="" id="team_id" data-am-selected="{searchBox: 1}">
+                <option value="">请选择班级</option>
+                @foreach($teams as $team)
+                    <option value="{{$team->id}}"
+                            @if(!empty(request('team_id')) && request('team_id')==$team->id) selected @endif>{{$team->class}}</option>
+                @endforeach
+            </select>
+
+            <label for="">学期</label>
+            <select name="semester" id="semester" data-am-selected="{searchBox: 1}">
+                <option value="1" @if(!empty(request('semester')) && request('semester')==1) selected @endif>
+                    大一第一学期
+                </option>
+                <option value="2" @if(!empty(request('semester')) && request('semester')==2) selected @endif>
+                    大一第二学期
+                </option>
+                <option value="3" @if(!empty(request('semester')) && request('semester')==3) selected @endif>
+                    大二第一学期
+                </option>
+                <option value="4" @if(!empty(request('semester')) && request('semester')==4) selected @endif>
+                    大二第二学期
+                </option>
+                <option value="5" @if(!empty(request('semester')) && request('semester')==5) selected @endif>
+                    大三第一学期
+                </option>
+                <option value="6" @if(!empty(request('semester')) && request('semester')==6) selected @endif>
+                    大三第二学期
+                </option>
+                <option value="7" @if(!empty(request('semester')) && request('semester')==7) selected @endif>
+                    大四第一学期
+                </option>
+                <option value="8" @if(!empty(request('semester')) && request('semester')==8) selected @endif>
+                    大四第二学期
+                </option>
+            </select>
+
             <div class="">
                 <div class="am-g">
                     <div class="am-u-sm-12">
@@ -37,8 +84,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if($StatusCode==200))
-                            @foreach($students as $student)
+                            @if($StatusCode==200)
+                            @foreach($ResultData as $student)
                                 <tr>
                                     <td>{{$student->id}}</td>
                                     <td>
@@ -88,6 +135,16 @@
 @section('script')
     <script src="{{url('/vendors/sweet-alert/js/sweet-alert.min.js')}}"></script>
     <script>
+        $('#team_id').change(function () {
+            location.href = '/grades?team_id=' + $('#team_id').val() + '&semester=' + $('#semester').val() + '&course_id=' + $('#course_id').val();
+        });
+        $('#semester').change(function () {
+            location.href = '/grades?semester=' + $('#semester').val() + '&team_id=' + $('#team_id').val() + '&course_id=' + $('#course_id').val();
+        });
+        $('#course_id').change(function () {
+            location.href = '/grades?semester=' + $('#semester').val() + '&team_id=' + $('#team_id').val() + '&course_id=' + $('#course_id').val();
+        });
+
         // 单选删除操作
         $('.del').click(function () {
             var url = ' grades/' + $(this).data('id');
