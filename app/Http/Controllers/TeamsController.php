@@ -11,7 +11,7 @@ class TeamsController extends Controller
      * 说明:  班级列表
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class TeamsController extends Controller
      * 说明: 添加班级视图
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create()
     {
@@ -35,7 +35,7 @@ class TeamsController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -52,7 +52,7 @@ class TeamsController extends Controller
      *
      * @param Team $team
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit(Team $team)
     {
@@ -65,7 +65,7 @@ class TeamsController extends Controller
      * @param Team $team
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function update(Team $team, Request $request)
     {
@@ -83,7 +83,7 @@ class TeamsController extends Controller
      * @param Team $team
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(Team $team)
     {

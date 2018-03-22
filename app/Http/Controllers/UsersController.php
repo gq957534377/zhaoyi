@@ -12,7 +12,7 @@ class UsersController extends Controller
      * 说明: 资料修改页面
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function userInfo()
     {
@@ -26,7 +26,7 @@ class UsersController extends Controller
      * @param User $user
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function updateInfo(User $user, Request $request)
     {
@@ -45,7 +45,7 @@ class UsersController extends Controller
      * 说明: 修改密码视图
      *
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function changePwdView()
     {
@@ -57,7 +57,7 @@ class UsersController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function changePwd(Request $request)
     {
@@ -79,7 +79,7 @@ class UsersController extends Controller
      *
      * @param Request $request
      * @return $this
-     * @author 郭庆
+     * @author 赵艺
      */
     public function bindWechat(Request $request)
     {

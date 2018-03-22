@@ -14,7 +14,7 @@ class StudentsController extends Controller
      * 说明:  学生列表
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index()
     {
@@ -28,7 +28,7 @@ class StudentsController extends Controller
      * 说明: 添加学生视图
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create()
     {
@@ -41,7 +41,7 @@ class StudentsController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -78,7 +78,7 @@ class StudentsController extends Controller
      *
      * @param User $student
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit(User $student)
     {
@@ -92,7 +92,7 @@ class StudentsController extends Controller
      * @param User $student
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function update(User $student, Request $request)
     {
@@ -113,7 +113,7 @@ class StudentsController extends Controller
      *
      * @param User $student
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(User $student)
     {

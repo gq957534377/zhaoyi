@@ -28,7 +28,7 @@ class User extends Authenticatable
      * 说明: 获取班级信息
      *
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function getClassAttribute()
     {

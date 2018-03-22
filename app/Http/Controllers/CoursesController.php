@@ -13,7 +13,7 @@ class CoursesController extends Controller
      * 说明:  课程列表
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index()
     {
@@ -25,7 +25,7 @@ class CoursesController extends Controller
      * 说明: 添加课程视图
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create()
     {
@@ -40,7 +40,7 @@ class CoursesController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -61,7 +61,7 @@ class CoursesController extends Controller
      *
      * @param Course $course
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit(Course $course)
     {
@@ -77,7 +77,7 @@ class CoursesController extends Controller
      * @param Course $course
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function update(Course $course, Request $request)
     {
@@ -95,7 +95,7 @@ class CoursesController extends Controller
      *
      * @param Course $course
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(Course $course)
     {

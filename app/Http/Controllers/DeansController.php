@@ -12,7 +12,7 @@ class DeansController extends Controller
      * 说明:  教务列表
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index()
     {
@@ -26,7 +26,7 @@ class DeansController extends Controller
      * 说明: 添加教务视图
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create()
     {
@@ -38,7 +38,7 @@ class DeansController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -69,7 +69,7 @@ class DeansController extends Controller
      *
      * @param User $dean
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit(User $dean)
     {
@@ -82,7 +82,7 @@ class DeansController extends Controller
      * @param User $dean
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function update(User $dean, Request $request)
     {
@@ -100,7 +100,7 @@ class DeansController extends Controller
      *
      * @param User $dean
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(User $dean)
     {

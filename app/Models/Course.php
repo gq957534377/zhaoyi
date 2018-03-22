@@ -13,7 +13,7 @@ class Course extends Model
      * 说明: 获取代课老师信息
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     * @author 郭庆
+     * @author 赵艺
      */
     public function teacher()
     {
@@ -24,7 +24,7 @@ class Course extends Model
      * 说明: 返回代课班级课表关联数据
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     * @author 郭庆
+     * @author 赵艺
      */
     public function teamCourses()
     {

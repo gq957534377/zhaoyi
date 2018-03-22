@@ -19,7 +19,7 @@ class GradesController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index(Request $request)
     {
@@ -53,7 +53,7 @@ class GradesController extends Controller
      * 说明: 添加成绩视图
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create()
     {
@@ -73,7 +73,7 @@ class GradesController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -85,7 +85,7 @@ class GradesController extends Controller
      *
      * @param User $dean
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit()
     {
@@ -98,7 +98,7 @@ class GradesController extends Controller
      * @param User $dean
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function update()
     {
@@ -110,7 +110,7 @@ class GradesController extends Controller
      *
      * @param User $dean
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy()
     {

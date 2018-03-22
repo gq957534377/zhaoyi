@@ -11,7 +11,7 @@ class PermissionsController extends Controller
      * 说明:  权限列表
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class PermissionsController extends Controller
      * 说明: 添加权限视图
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create()
     {
@@ -35,7 +35,7 @@ class PermissionsController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -52,7 +52,7 @@ class PermissionsController extends Controller
      *
      * @param Permission $permission
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit(Permission $permission)
     {
@@ -65,7 +65,7 @@ class PermissionsController extends Controller
      * @param Permission $permission
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function update(Permission $permission, Request $request)
     {
@@ -83,7 +83,7 @@ class PermissionsController extends Controller
      *
      * @param Permission $permission
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(Permission $permission)
     {

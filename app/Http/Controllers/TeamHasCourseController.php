@@ -33,7 +33,7 @@ class TeamHasCourseController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -67,7 +67,7 @@ class TeamHasCourseController extends Controller
      * @param TeamHasCourse $teamHasCourse
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(TeamHasCourse $teamHasCourse)
     {

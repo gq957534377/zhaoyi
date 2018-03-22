@@ -1,5 +1,5 @@
 /**
- * Created by 郭庆 on 2017/6/29.
+ * Created by 赵艺 on 2017/6/29.
  */
 // 坐标位置+标注+浮动文字
 function Circle(point, text, mouseoverText){

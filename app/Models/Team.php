@@ -15,7 +15,7 @@ class Team extends Model
      * 说明: 获取班级学生
      *
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function getStudentsAttribute()
     {

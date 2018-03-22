@@ -13,7 +13,7 @@ class RolesController extends Controller
      * 说明: 返回角色列表页
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index()
     {
@@ -28,7 +28,7 @@ class RolesController extends Controller
      * 说明: 添加角色页面
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create()
     {
@@ -41,7 +41,7 @@ class RolesController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -68,7 +68,7 @@ class RolesController extends Controller
      *
      * @param Role $role
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit(Role $role)
     {
@@ -86,7 +86,7 @@ class RolesController extends Controller
      * @param Role $role
      * @param Request $request
      * @return mixed
-     * @author 郭庆
+     * @author 赵艺
      */
     public function update(Role $role, Request $request)
     {
@@ -111,7 +111,7 @@ class RolesController extends Controller
      *
      * @param Role $role
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(Role $role)
     {
