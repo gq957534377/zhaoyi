@@ -89,7 +89,15 @@ class GradesController extends Controller
      */
     public function store(Request $request)
     {
-
+        $result = Grade::create([
+            'student_id' => $request->student_id,
+            'course_id' => $request->course_id,
+            'semester' => $request->semester,
+            'grade' => $request->grade,
+        ]);
+        if (empty($result))
+            return response()->json(['StatusCode' => 500, 'ResultData' => '添加失败']);
+        return response()->json(['StatusCode' => 200, 'ResultData' => '添加成功']);
     }
 
     /**
@@ -120,12 +128,15 @@ class GradesController extends Controller
     /**
      * 说明: 删除成绩
      *
-     * @param User $dean
+     * @param Grade $grade
      * @return \Illuminate\Http\JsonResponse
-     * @author 赵艺
+     * @throws \Exception
+     * @author 郭庆
      */
-    public function destroy()
+    public function destroy(Grade $grade)
     {
-
+        if (empty($grade->delete()))
+            return response()->json(['StatusCode' => 500, 'ResultData' => '删除失败']);
+        return response()->json(['StatusCode' => 200, 'ResultData' => '删除成功']);
     }
 }

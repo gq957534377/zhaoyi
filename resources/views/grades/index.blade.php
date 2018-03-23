@@ -101,6 +101,8 @@
                                                     <a href="javascript:;" >
                                                         <button data-grade_id="{{$student->grade_id}}"
                                                                 data-student_id="{{$student->id}}"
+                                                                data-class_name="{{$student->class->first()->class??''}}"
+                                                                data-student_name="{{$student->name}}"
                                                                 class="edit am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                                                     class="am-icon-pencil-square-o"></span> 编辑
                                                         </button>
@@ -143,21 +145,29 @@
                     <div class="modal-content" style="margin-top: 300px">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">修改</h4>
+                            <h4 class="modal-title" id="myModalLabel">编辑成绩</h4>
                         </div>
                         <input type="hidden" name="student_id" id="form-student_id">
+
+                        <div class="modal-body">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-4 am-form-label" id="class_name"></label>
+                                <label for="user-name" class="am-u-sm-4 am-form-label" id="student_name"></label>
+                            </div>
+                        </div>
+
                         <div class="modal-body">
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">成绩</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" name="grade" required id="grade"
+                                    <input type="text" name="grade" required id="form-grade"
                                            placeholder="请输入成绩">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" data-num="" data-day="" class="btn btn-primary js_sub_grade">提交更改
+                            <button type="submit" data-num="" data-day="" class="btn btn-primary js_sub_grade">提交更改
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -182,11 +192,13 @@
         $('.edit').click(function () {
             $('.js_gqsb').data('num', $(this).data('num')).data('day', $(this).data('day'));
             $('#form-student_id').val($(this).data('student_id'));
+            $('#class_name').html($(this).data('class_name'));
+            $('#student_name').html($(this).data('student_name'));
             $('.js_modal').click();
         });
         // 单选删除操作
         $('.del').click(function () {
-            var url = ' grades/' + $(this).data('id');
+            var url = ' grades/' + $(this).data('grade_id');
             $.ajax({
                 url: url,
                 data: {'_token': '{{ csrf_token() }}'},
@@ -214,12 +226,16 @@
         // 提交成绩
         $('.js_sub_grade').click(function () {
             var url = '/grades';
+            if (!$('#form-grade').val()){
+                alert('请输入成绩');
+                return false;
+            }
             $.ajax({
                 url: url,
                 data: {
                     '_token': '{{ csrf_token() }}',
-                    'day': $(this).data('day'),
-                    'num': $(this).data('num'),
+                    'student_id': $('#form-student_id').val(),
+                    'grade': $('#form-grade').val(),
                     'course_id': $('#course_id').val(),
                     'team_id': $('#team_id').val(),
                     'semester': $('#semester').val(),
@@ -229,7 +245,7 @@
                     if (data.StatusCode === 200) {
                         swal({
                             title: '设置成功！',
-                            text: '课表更新成功',
+                            text: '成绩更新成功',
                             type: "success",
                             showCancelButton: false,
                             confirmButtonColor: "#DD6B55",
@@ -239,7 +255,7 @@
                             location.reload();
                         });
                     } else {
-                        swal("操作失败!", data.ResultData, 'error');
+                        swal("添加失败!", data.ResultData, 'error');
                     }
                 }
             });
