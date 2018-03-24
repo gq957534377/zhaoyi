@@ -49,6 +49,7 @@ class CoursesController extends Controller
             'max_num' => $request->max_num,
             'time' => $request->time,
             'classroom' => $request->classroom,
+            'credit' => $request->credit,
             'teacher_id' => $request->teacher_id,
         ]))
         )

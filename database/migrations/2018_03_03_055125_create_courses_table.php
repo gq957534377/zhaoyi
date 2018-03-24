@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->integer('teacher_id');
             $table->string('name')->nullable();
+            $table->string('credit')->nullable();
             $table->string('max_num')->nullable();
             $table->string('time')->nullable();
             $table->string('classroom')->nullable();

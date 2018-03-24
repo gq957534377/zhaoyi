@@ -31,6 +31,15 @@
                                            placeholder="课程名">
                                 </div>
                             </div>
+
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">学分</label>
+                                <div class="am-u-sm-9">
+                                    <input type="number" name="credit" required value="{{old('credit')}}"
+                                           placeholder="学分">
+                                </div>
+                            </div>
+
                             <div class="am-form-group">
                                 <label for="user-email" class="am-u-sm-3 am-form-label">人数</label>
                                 <div class="am-u-sm-9">

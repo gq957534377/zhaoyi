@@ -72,12 +72,12 @@ class GradesController extends Controller
         return view('grades.create');
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $where['semester'] = $request->semester ?? null;
-        $grades = Grade::where(array_filter($where))->get();
-
-        return view('grades.index', ['grades' => $grades]);
+        $where['semester'] = $request->semester ?? 1;
+        $where['student_id'] = Auth::user()->id;
+        $grades = Grade::where(array_filter($where))->with('course')->get();
+        return view('grades.show', ['grades' => $grades]);
     }
 
     /**
@@ -89,12 +89,23 @@ class GradesController extends Controller
      */
     public function store(Request $request)
     {
-        $result = Grade::create([
+        $grade = Grade::where([
             'student_id' => $request->student_id,
             'course_id' => $request->course_id,
             'semester' => $request->semester,
-            'grade' => $request->grade,
-        ]);
+        ])->first();
+        if (empty($grade)) {
+            $result = Grade::create([
+                'student_id' => $request->student_id,
+                'course_id' => $request->course_id,
+                'semester' => $request->semester,
+                'grade' => $request->grade,
+            ]);
+        } else {
+            $grade->grade = $request->grade;
+            $result = $grade->save();
+        }
+
         if (empty($result))
             return response()->json(['StatusCode' => 500, 'ResultData' => '添加失败']);
         return response()->json(['StatusCode' => 200, 'ResultData' => '添加成功']);

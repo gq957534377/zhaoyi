@@ -31,6 +31,7 @@
                             <tr>
                                 <th class="table-id">ID</th>
                                 <th class="table-title">课程名</th>
+                                <th class="table-title">学分</th>
                                 <th class="table-title">代课教师</th>
                                 <th class="table-type">最多人数</th>
                                 <th class="table-type">上课时间</th>
@@ -47,6 +48,7 @@
                                         <td>
                                             <a href="{{ url('/courses/'.$course->id.'/edit') }}">{{$course->name}}</a>
                                         </td>
+                                        <td>{{$course->credit??''}}</td>
                                         <td>{{$course->teacher->name??'暂无'}}</td>
 
                                         <td>{{$course->max_num}}</td>
