@@ -69,7 +69,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="6">
                                         <center>
                                             暂无权限,请添加权限
                                         </center>

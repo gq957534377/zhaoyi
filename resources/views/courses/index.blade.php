@@ -76,7 +76,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="9">
                                         <center>
                                             暂无课程,请添加课程
                                         </center>

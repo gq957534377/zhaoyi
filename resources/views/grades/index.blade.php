@@ -122,7 +122,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="6">
                                         <center>
                                             {{$ResultData}}
                                         </center>
