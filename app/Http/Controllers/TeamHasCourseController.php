@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\TeamHasCourse;
 use App\Models\TeamHasUser;
 use Illuminate\Http\Request;
+use Qiniu\Auth;
 use Spatie\Permission\Models\Role;
 
 class TeamHasCourseController extends Controller
@@ -25,6 +26,38 @@ class TeamHasCourseController extends Controller
             'teamHasCourses' => $teamHasCourses,
             'teams' => $teams,
             'courses' => $courses,
+        ]);
+    }
+
+    /**
+     * 说明: 我的课程
+     *
+     * @param $type
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @author 郭庆
+     */
+    public function show($type, Request $request)
+    {
+        $user = \Illuminate\Support\Facades\Auth::user();
+        if ($type == 'my_course') {
+            if (empty($team = TeamHasUser::where(['user_id' => $user->id])->first())) {
+                $teamHasCourses = collect([]);
+            } else {
+                $teamHasCourses = TeamHasCourse::with('course')->where(['team_id' => $team->team_id, 'semester' => $request->semester ?? 1])->get();
+            }
+        } elseif ($type == 'my_team') {
+            if (empty($courses = Course::where('teacher_id', $user->id)->pluck('id')->toArray())) {
+                $teamHasCourses = collect([]);
+            } else {
+                $teamHasCourses = TeamHasCourse::with('course')->whereIn('course_id', $courses)->where(['semester' => $request->semester ?? 1])->get();
+            }
+        }else{
+            $teamHasCourses = collect([]);
+        }
+
+        return view('teamHasCourses.show', [
+            'teamHasCourses' => $teamHasCourses
         ]);
     }
 

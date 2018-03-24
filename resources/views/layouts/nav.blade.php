@@ -185,4 +185,16 @@
             <span>班级课程管理</span>
         </a>
     </li>
+    <li class="tpl-left-nav-item">
+        <a href="{{url('/team_has_courses/my_course')}}" class="nav-link @if(request()->path()=='team_has_courses') active @endif">
+            <i class="am-icon-home"></i>
+            <span>我的课表</span>
+        </a>
+    </li>
+    <li class="tpl-left-nav-item">
+        <a href="{{url('/team_has_courses/my_team')}}" class="nav-link @if(request()->path()=='team_has_courses') active @endif">
+            <i class="am-icon-home"></i>
+            <span>我的课程</span>
+        </a>
+    </li>
 </ul>
