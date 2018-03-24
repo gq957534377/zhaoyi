@@ -32,7 +32,6 @@
                                 <th class="table-id">ID</th>
                                 <th class="table-title">权限</th>
                                 <th class="table-type">英文名</th>
-                                <th class="table-type">用户数</th>
                                 <th class="table-date am-hide-sm-only">修改日期</th>
                                 <th class="table-set">操作</th>
                             </tr>
@@ -46,7 +45,6 @@
                                             <a href="{{ url('/permissions/'.$permission->id.'/edit') }}">{{$permission->name_cn}}</a>
                                         </td>
                                         <td>{{$permission->name}}</td>
-                                        <td>{{ $permission->users->count() }}</td>
                                         <td class="am-hide-sm-only">{{$permission->updated_at}}</td>
                                         <td>
                                             <div class="am-btn-toolbar">
@@ -69,7 +67,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="6">
+                                    <td colspan="5">
                                         <center>
                                             暂无权限,请添加权限
                                         </center>

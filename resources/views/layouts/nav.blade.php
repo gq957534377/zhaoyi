@@ -197,4 +197,25 @@
             <span>我的课程</span>
         </a>
     </li>
+
+    <li class="tpl-left-nav-item">
+        <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+            <i class="am-icon-table"></i>
+            <span>消息管理</span>
+            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+        </a>
+        <ul class="tpl-left-nav-sub-menu">
+            <li>
+                <a href="{{url('/news')}}">
+                    <i class="am-icon-angle-right"></i>
+                    <span>我的消息</span>
+                </a>
+
+                <a href="{{url('/news/create')}}">
+                    <i class="am-icon-angle-right"></i>
+                    <span>发送消息</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 </ul>
