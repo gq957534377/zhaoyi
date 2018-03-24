@@ -52,7 +52,7 @@ class TeamHasCourseController extends Controller
             } else {
                 $teamHasCourses = TeamHasCourse::with('course')->whereIn('course_id', $courses)->where(['semester' => $request->semester ?? 1])->get();
             }
-        }else{
+        } else {
             $teamHasCourses = collect([]);
         }
 
