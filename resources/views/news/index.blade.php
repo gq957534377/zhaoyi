@@ -71,13 +71,13 @@
                                         <i class="am-icon-cog"></i> <span class="am-icon-caret-down"></span>
                                     </a>
                                     <ul class="am-dropdown-content tpl-task-list-dropdown-ul">
-                                        @if($new->status!=2)
-                                            <li>
-                                                <a href="javascript:;" class="edit" data-id="{{$new->id}}">
-                                                    <i class="am-icon-check"></i> 已读 </a>
-                                            </li>
-                                        @endif
                                         @if(empty($request->type)||$request->type=='receive')
+                                            @if($new->status!=2)
+                                                <li>
+                                                    <a href="javascript:;" class="edit" data-id="{{$new->id}}">
+                                                        <i class="am-icon-check"></i> 已读 </a>
+                                                </li>
+                                            @endif
                                             <li>
                                                 <a href="javascript:;" class="del" data-id="{{$new->id}}">
                                                     <i class="am-icon-trash-o"></i> 删除 </a>
