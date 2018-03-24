@@ -72,12 +72,64 @@ class GradesController extends Controller
         return view('grades.create');
     }
 
+    /**
+     * 说明: 我的成绩
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @author 郭庆
+     */
     public function show(Request $request)
     {
         $where['semester'] = $request->semester ?? 1;
         $where['student_id'] = Auth::user()->id;
         $grades = Grade::where(array_filter($where))->with('course')->get();
         return view('grades.show', ['grades' => $grades]);
+    }
+
+    /**
+     * 说明: 下载我的成绩
+     *
+     * @param Request $request
+     * @author 郭庆
+     */
+    public function myGradeDown(Request $request)
+    {
+        $where['semester'] = $request->semester ?? 1;
+        $where['student_id'] = Auth::user()->id;
+        $grades = Grade::where(array_filter($where))->with('course')->get();
+
+        // 打印成绩单
+    }
+
+    public function exportGrades(Request $request)
+    {
+        dd($request->all());
+//        $dir = dirname(__FILE__);
+//        include $dir . '/PHPExcel/Classes/PHPExcel.php';
+//
+//        if ($file_type == "xlsx") {
+//            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+//        } else {
+//            $objReader = \PHPExcel_IOFactory::createReader('Excel5');
+//        }
+//        $objPHPExcel = new \PHPExcel();
+//        $objReader->setReadDataOnly(true);
+//        $objPHPExcel = $objReader->load($filename);
+//        $objWorksheet = $objPHPExcel->getActiveSheet();
+//        $highestRow = $objWorksheet->getHighestRow();
+//        $highestColumn = $objWorksheet->getHighestColumn();
+//        $highestColumnIndex = \PHPExcel_Cell::columnIndexFromString($highestColumn);
+//        $excelData = array();
+//        for ($row = 1; $row <= $highestRow; $row++) {
+//            for ($col = 0; $col < $highestColumnIndex; $col++) {
+//                if ($objWorksheet->getCellByColumnAndRow(0, $row)->getValue() === null) {
+//                    continue;
+//                }
+//                $excelData[$row][] = $objWorksheet->getCellByColumnAndRow($col, $row)->getValue();
+//            }
+//        }
+//        return $excelData;
     }
 
     /**

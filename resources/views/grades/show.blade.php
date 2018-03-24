@@ -57,6 +57,13 @@
                 </option>
             </select>
 
+            <a href="{{url('/my_grade_down?semester='.request('semester')??null)}}">
+                <button type="button"
+                        class="download am-btn am-btn-default am-btn-secondary">
+                    <span class="am-icon-save"></span> 下载
+                </button>
+            </a>
+
             <div class="">
                 <div class="am-g">
                     <div class="am-u-sm-12">
