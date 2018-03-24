@@ -31,6 +31,7 @@
                             <tr>
                                 <th class="table-id">ID</th>
                                 <th class="table-title">班级</th>
+                                <th class="table-title">级</th>
                                 <th class="table-type">学生数</th>
                                 <th class="table-date am-hide-sm-only">修改日期</th>
                                 <th class="table-set">操作</th>
@@ -44,6 +45,7 @@
                                         <td>
                                             <a href="{{ url('/teams/'.$team->id.'/edit') }}">{{$team->class}}</a>
                                         </td>
+                                        <td>{{ $team->stage.'级'}}</td>
                                         <td>{{ $team->students->count() }}</td>
                                         <td class="am-hide-sm-only">{{$team->updated_at}}</td>
                                         <td>

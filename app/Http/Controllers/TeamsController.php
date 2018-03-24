@@ -41,6 +41,7 @@ class TeamsController extends Controller
     {
         if (empty(Team::create([
             'class' => $request->name,
+            'stage' => $request->stage,
         ]))
         )
             return back()->withInput()->withErrors('添加失败！');
@@ -72,6 +73,7 @@ class TeamsController extends Controller
         $data = $request->except('_token', '_method');
 
         $team->class = $request->name;
+        $team->stage= $request->stage;
         if (empty($team->save())) return back()->withErrors('修改失败!');
 
         return redirect('/teams')->withErrors('修改成功!', 'success');

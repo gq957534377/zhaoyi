@@ -32,6 +32,13 @@
                                 </div>
                             </div>
                             <div class="am-form-group">
+                                <label for="user-email" class="am-u-sm-3 am-form-label">级</label>
+                                <div class="am-u-sm-9">
+                                    <input type="number" name="stage" required maxlength="64" value="{{old('stage')}}"
+                                           placeholder="eg:2013级">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
                                     <button class="am-btn am-btn-primary">添加</button>
                                 </div>

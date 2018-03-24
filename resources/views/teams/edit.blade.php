@@ -34,6 +34,14 @@
                                 </div>
                             </div>
                             <div class="am-form-group">
+                                <label for="user-email" class="am-u-sm-3 am-form-label">级</label>
+                                <div class="am-u-sm-9">
+                                    <input type="number" name="stage" required
+                                           value="{{$team->stage}}"
+                                           placeholder="2013级别">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
                                     <button class="am-btn am-btn-primary">修改</button>
                                 </div>
