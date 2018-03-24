@@ -151,8 +151,8 @@
                             class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
 
             @guest
-            <li><a href="{{ route('login') }}">Login</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
+                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{ route('register') }}">Register</a></li>
             @else
                 <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                     <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
@@ -178,9 +178,9 @@
                         </li>
                     </ul>
                 </li>
-                @endguest
-                <li><a href="###" class="tpl-header-list-link"><span
-                                class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+            @endguest
+            <li><a href="###" class="tpl-header-list-link"><span
+                            class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
         </ul>
     </div>
 </header>
@@ -188,7 +188,7 @@
 <div class="tpl-page-container tpl-page-header-fixed">
     <div class="tpl-left-nav tpl-left-nav-hover">
         <div class="tpl-left-nav-title">
-        导航
+            导航
         </div>
         <div class="tpl-left-nav-list">
             @include('layouts.nav')
@@ -201,5 +201,10 @@
 <script src="/assets/js/amazeui.min.js"></script>
 <script src="/assets/js/iscroll.js"></script>
 <script src="/assets/js/app.js"></script>
+<script>
+    var gq_height = $(window).height();
+    $('.tpl-content-wrapper').css('min-height', gq_height + 'px');
+    $('.tpl-portlet-components').css('min-height', gq_height + 'px');
+</script>
 @yield('script')
 </html>
