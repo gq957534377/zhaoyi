@@ -141,11 +141,49 @@ class GradesController extends Controller
         return response()->json(['StatusCode' => 400, 'ResultData' => '请上传成绩excel文件']);
     }
 
+    /**
+     * 说明: 添加导入成绩
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @author 郭庆
+     */
     public function storeManyGrades(Request $request)
     {
-//        dd($request->all());
-        return response()->json(['StatusCode' => 200, 'ResultData' => '导入成功']);
+        $data = $request->data ?? [];
+        $fail = [];
+        $count = 0;
+        foreach ($data as $student) {
+            $stu = User::where(['name' => $student['name'], 'no' => $student['no']])->first();
+            if (empty($stu)) {
+                $fail[] = $student;
+                continue;
+            }
+            $grade = Grade::where([
+                'student_id' => $stu->id,
+                'course_id' => $request->course_id,
+                'semester' => $request->semester,
+            ])->first();
+            if (empty($grade)) {
+                $result = Grade::create([
+                    'student_id' => $stu->id,
+                    'course_id' => $request->course_id,
+                    'semester' => $request->semester,
+                    'grade' => $student['grade'],
+                ]);
+            } else {
+                $grade->grade = $student['grade'];
+                $result = $grade->save();
+            }
+            if (empty($result)) {
+                $fail[] = $student;
+            }
+            $count++;
+        }
 
+        if (empty($count))
+            return response()->json(['StatusCode' => 400, 'ResultData' => '导入失败' . $count . '个;失败' . count($fail) . '个,其中包括：' . json_encode($fail)]);
+        return response()->json(['StatusCode' => 200, 'ResultData' => '导入成功' . $count . '个;失败' . count($fail) . '个,其中包括：' . json_encode($fail)]);
     }
 
     /**

@@ -24,7 +24,6 @@
                               enctype="multipart/form-data"
                               method="post">
                             {{csrf_field()}}
-
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">学号所在列 <span
                                             class="tpl-form-line-small-title">No_Num</span></label>
@@ -150,9 +149,12 @@
                             $.ajax({
                                 url: '/store_many_grades',
                                 type: 'post',
-                                data: {data:res.ResultData},
+                                data: {
+                                    data:res.ResultData,
+                                    semester:'{{request('semester')}}',
+                                    course_id:'{{request('course_id')}}',
+                                },
                                 success: function (res) {
-                                    console.log(res);
                                     alert(res.ResultData);
                                     if (res.StatusCode === 200) {
                                         location.reload();

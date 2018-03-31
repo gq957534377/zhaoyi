@@ -13,7 +13,6 @@
         </div>
         <ol class="am-breadcrumb">
             <li><a href="#" class="am-icon-home">成绩管理</a></li>
-            <li><a href="{{ url('/grades/create') }}">添加成绩</a></li>
             <li class="am-active">成绩列表</li>
         </ol>
         @include('layouts.errors')
@@ -70,6 +69,11 @@
                 </option>
             </select>
 
+            <button type="button"
+                    class="export am-btn am-btn-default am-btn-secondary">
+                <span class="am-icon-save"></span> Excel导入
+            </button>
+
             <div class="">
                 <div class="am-g">
                     <div class="am-u-sm-12">
@@ -98,7 +102,7 @@
                                         <td>
                                             <div class="am-btn-toolbar">
                                                 <div class="am-btn-group am-btn-group-xs">
-                                                    <a href="javascript:;" >
+                                                    <a href="javascript:;">
                                                         <button data-grade_id="{{$student->grade_id}}"
                                                                 data-student_id="{{$student->id}}"
                                                                 data-class_name="{{$student->class->first()->class??''}}"
@@ -189,6 +193,18 @@
         $('#course_id').change(function () {
             location.href = '/grades?semester=' + $('#semester').val() + '&team_id=' + $('#team_id').val() + '&course_id=' + $('#course_id').val();
         });
+        $('.export').click(function () {
+            if (!$('#course_id').val()) {
+                alert('请选择所带课程');
+                return false;
+            }
+
+            if (!$('#semester').val()) {
+                alert('请选择上课学期');
+                return false;
+            }
+            location.href = '/grades/create?semester=' + $('#semester').val() + '&course_id=' + $('#course_id').val();
+        });
         $('.edit').click(function () {
             $('.js_gqsb').data('num', $(this).data('num')).data('day', $(this).data('day'));
             $('#form-student_id').val($(this).data('student_id'));
@@ -226,7 +242,7 @@
         // 提交成绩
         $('.js_sub_grade').click(function () {
             var url = '/grades';
-            if (!$('#form-grade').val()){
+            if (!$('#form-grade').val()) {
                 alert('请输入成绩');
                 return false;
             }
