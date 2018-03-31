@@ -100,6 +100,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('grades', 'GradesController');
     Route::get('my_grade_down', 'GradesController@myGradeDown');
     Route::post('export_grades', 'GradesController@exportGrades');
+    Route::post('store_many_grades', 'GradesController@storeManyGrades');
 
     /*
     |--------------------------------------------------------------------------

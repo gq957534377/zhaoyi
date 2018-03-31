@@ -131,13 +131,21 @@ class GradesController extends Controller
             $excelData = array();
             for ($row = $request->start_num; $row <= $highestRow; $row++) {
                 $excelData[] = [
+                    'no' => $objWorksheet->getCellByColumnAndRow(($request->no_num - 1), $row)->getValue(),
                     'name' => $objWorksheet->getCellByColumnAndRow(($request->name_num - 1), $row)->getValue(),
-                    'garde' => $objWorksheet->getCellByColumnAndRow(($request->grade_num - 1), $row)->getValue()
+                    'grade' => $objWorksheet->getCellByColumnAndRow(($request->grade_num - 1), $row)->getValue()
                 ];
             }
             return response()->json(['StatusCode' => 200, 'ResultData' => $excelData]);
         }
         return response()->json(['StatusCode' => 400, 'ResultData' => '请上传成绩excel文件']);
+    }
+
+    public function storeManyGrades(Request $request)
+    {
+//        dd($request->all());
+        return response()->json(['StatusCode' => 200, 'ResultData' => '导入成功']);
+
     }
 
     /**
