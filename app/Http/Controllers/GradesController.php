@@ -102,34 +102,42 @@ class GradesController extends Controller
         // 打印成绩单
     }
 
+    /**
+     * 说明:
+     *
+     * @param Request $request
+     * @return array
+     * @throws \PHPExcel_Exception
+     * @throws \PHPExcel_Reader_Exception
+     * @author 郭庆
+     */
     public function exportGrades(Request $request)
     {
-        dd($request->all());
-//        $dir = dirname(__FILE__);
-//        include $dir . '/PHPExcel/Classes/PHPExcel.php';
-//
-//        if ($file_type == "xlsx") {
-//            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
-//        } else {
-//            $objReader = \PHPExcel_IOFactory::createReader('Excel5');
-//        }
-//        $objPHPExcel = new \PHPExcel();
-//        $objReader->setReadDataOnly(true);
-//        $objPHPExcel = $objReader->load($filename);
-//        $objWorksheet = $objPHPExcel->getActiveSheet();
-//        $highestRow = $objWorksheet->getHighestRow();
-//        $highestColumn = $objWorksheet->getHighestColumn();
-//        $highestColumnIndex = \PHPExcel_Cell::columnIndexFromString($highestColumn);
-//        $excelData = array();
-//        for ($row = 1; $row <= $highestRow; $row++) {
-//            for ($col = 0; $col < $highestColumnIndex; $col++) {
-//                if ($objWorksheet->getCellByColumnAndRow(0, $row)->getValue() === null) {
-//                    continue;
-//                }
-//                $excelData[$row][] = $objWorksheet->getCellByColumnAndRow($col, $row)->getValue();
-//            }
-//        }
-//        return $excelData;
+        if ($request->hasFile('file_excel')) {
+            $file = $request->file_excel;
+            //提取上传后的临时存放地址
+            //拼装新的文件名
+            $extension = $file->getClientOriginalExtension();
+            if ($extension == "xlsx") {
+                $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+            } else {
+                $objReader = \PHPExcel_IOFactory::createReader('Excel5');
+            }
+            $objReader->setReadDataOnly(true);
+            $objPHPExcel = $objReader->load($file);
+            $objWorksheet = $objPHPExcel->getActiveSheet();
+
+            $highestRow = $objWorksheet->getHighestRow();
+            $excelData = array();
+            for ($row = $request->start_num; $row <= $highestRow; $row++) {
+                $excelData[] = [
+                    'name' => $objWorksheet->getCellByColumnAndRow(($request->name_num - 1), $row)->getValue(),
+                    'garde' => $objWorksheet->getCellByColumnAndRow(($request->grade_num - 1), $row)->getValue()
+                ];
+            }
+            return response()->json(['StatusCode' => 200, 'ResultData' => $excelData]);
+        }
+        return response()->json(['StatusCode' => 400, 'ResultData' => '请上传成绩excel文件']);
     }
 
     /**
