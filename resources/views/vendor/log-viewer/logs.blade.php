@@ -1,15 +1,7 @@
 @extends('log-viewer::_template.master')
-@section('type','generalComponents')
-@section('title','日志列表')
+
 @section('content')
-    <div class="tpl-content-wrapper">
-        <div class="tpl-content-page-title">
-            日志列表
-        </div>
-        <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">日志管理</a></li>
-            <li class="am-active">日志列表</li>
-        </ol>
+    <h1 class="page-header">Logs</h1>
 
     {!! $rows->render() !!}
 

@@ -1,4 +1,21 @@
 <style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    body {
+        padding-top: 50px;
+        /* Margin bottom by footer height */
+        margin-bottom: 50px;
+        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, sans-serif;
+        font-weight: 600;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Montserrat', 'Helvetica Neue', Helvetica, sans-serif;
+    }
+
     .sub-header {
         padding-bottom: 10px;
         border-bottom: 1px solid #EEE;
@@ -73,7 +90,7 @@
     }
 
     .table-condensed > tbody > tr > td > p {
-        margin: 0;
+      margin: 0;
     }
 
     .stack-content {
@@ -145,25 +162,25 @@
     .info-box.level-empty {
         opacity: .6;
         -webkit-filter: grayscale(1);
-        -moz-filter: grayscale(1);
-        -ms-filter: grayscale(1);
-        filter: grayscale(1);
+           -moz-filter: grayscale(1);
+            -ms-filter: grayscale(1);
+                filter: grayscale(1);
         -webkit-transition: all 0.2s ease-in-out;
-        -moz-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out;
+           -moz-transition: all 0.2s ease-in-out;
+             -o-transition: all 0.2s ease-in-out;
+                transition: all 0.2s ease-in-out;
         -webkit-transition-property: -webkit-filter, opacity;
-        -moz-transition-property: -moz-filter, opacity;
-        -o-transition-property: filter, opacity;
-        transition-property: -webkit-filter, -moz-filter, -o-filter, filter, opacity;
+           -moz-transition-property: -moz-filter, opacity;
+             -o-transition-property: filter, opacity;
+                transition-property: -webkit-filter, -moz-filter, -o-filter, filter, opacity;
     }
 
     .info-box.level-empty:hover {
         opacity: 1;
         -webkit-filter: grayscale(0);
-        -moz-filter: grayscale(0);
-        -ms-filter: grayscale(0);
-        filter: grayscale(0);
+           -moz-filter: grayscale(0);
+            -ms-filter: grayscale(0);
+                filter: grayscale(0);
     }
 
     .level {
