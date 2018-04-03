@@ -13,7 +13,7 @@ class Grade extends Model
      * 说明: 返回课程
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     * @author 郭庆
+     * @author 赵艺
      */
     public function course()
     {

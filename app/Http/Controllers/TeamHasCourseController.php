@@ -35,7 +35,7 @@ class TeamHasCourseController extends Controller
      * @param $type
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function show($type, Request $request)
     {

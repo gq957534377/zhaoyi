@@ -14,7 +14,7 @@ class NewsController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function index(Request $request)
     {
@@ -32,7 +32,7 @@ class NewsController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function create(Request $request)
     {
@@ -54,7 +54,7 @@ class NewsController extends Controller
      * 说明: 设置为已读
      *
      * @param News $news
-     * @author 郭庆
+     * @author 赵艺
      */
     public function edit(News $news)
     {
@@ -67,7 +67,7 @@ class NewsController extends Controller
      *
      * @param Request $request
      * @return $this
-     * @author 郭庆
+     * @author 赵艺
      */
     public function store(Request $request)
     {
@@ -86,7 +86,7 @@ class NewsController extends Controller
      * @param News $news
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(News $news)
     {

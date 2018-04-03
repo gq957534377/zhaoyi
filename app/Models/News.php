@@ -14,7 +14,7 @@ class News extends Model
      * 说明: 返回发送人信息
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     * @author 郭庆
+     * @author 赵艺
      */
     public function send()
     {

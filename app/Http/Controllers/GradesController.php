@@ -77,7 +77,7 @@ class GradesController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author 郭庆
+     * @author 赵艺
      */
     public function show(Request $request)
     {
@@ -91,7 +91,7 @@ class GradesController extends Controller
      * 说明: 下载我的成绩
      *
      * @param Request $request
-     * @author 郭庆
+     * @author 赵艺
      */
     public function myGradeDown(Request $request)
     {
@@ -109,7 +109,7 @@ class GradesController extends Controller
      * @return array
      * @throws \PHPExcel_Exception
      * @throws \PHPExcel_Reader_Exception
-     * @author 郭庆
+     * @author 赵艺
      */
     public function exportGrades(Request $request)
     {
@@ -146,7 +146,7 @@ class GradesController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
-     * @author 郭庆
+     * @author 赵艺
      */
     public function storeManyGrades(Request $request)
     {
@@ -248,7 +248,7 @@ class GradesController extends Controller
      * @param Grade $grade
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
-     * @author 郭庆
+     * @author 赵艺
      */
     public function destroy(Grade $grade)
     {
