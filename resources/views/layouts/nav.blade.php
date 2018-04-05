@@ -200,12 +200,7 @@
                 <span>班级课程管理</span>
             </a>
         </li>
-        <li class="tpl-left-nav-item">
-            <a href="{{url('/team_has_courses/my_course')}}" class="nav-link @if(request()->path()=='team_has_courses') active @endif">
-                <i class="am-icon-th"></i>
-                <span>我的课表</span>
-            </a>
-        </li>
+
         <li class="tpl-left-nav-item">
             <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                 <i class="am-icon-comment-o"></i>
@@ -273,6 +268,12 @@
             <a href="{{url('/grades/1')}}" class="nav-link @if(request()->path()=='/grades/1') active @endif">
                 <i class="am-icon-table"></i>
                 <span>我的成绩</span>
+            </a>
+        </li>
+        <li class="tpl-left-nav-item">
+            <a href="{{url('/team_has_courses/my_course')}}" class="nav-link @if(request()->path()=='team_has_courses/my_course') active @endif">
+                <i class="am-icon-th"></i>
+                <span>我的课表</span>
             </a>
         </li>
         <li class="tpl-left-nav-item">
