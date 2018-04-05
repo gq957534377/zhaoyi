@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title',config('app.name', 'Laravel') )</title>
+    <title>@yield('title',config('app.name', '成绩管理系统') )</title>
     <meta name="description" content="成绩管理系统">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
