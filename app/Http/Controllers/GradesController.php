@@ -182,7 +182,7 @@ class GradesController extends Controller
         }
 
         if (empty($count))
-            return response()->json(['StatusCode' => 400, 'ResultData' => '导入失败' . $count . '个;失败' . count($fail) . '个,其中包括：' . json_encode($fail)]);
+            return response()->json(['StatusCode' => 400, 'ResultData' => '导入失败'. '个,其中包括：' . json_encode($fail)]);
         return response()->json(['StatusCode' => 200, 'ResultData' => '导入成功' . $count . '个;失败' . count($fail) . '个,其中包括：' . json_encode($fail)]);
     }
 
